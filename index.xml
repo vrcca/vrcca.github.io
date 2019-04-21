@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Atomic Reference on Atomic Reference </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://vrcca.github.io/</link>
+    <language>en-us</language>
+    
+    
+    <updated>Tue, 05 Mar 2019 16:47:29 UTC</updated>
+    
+    <item>
+      <title>About</title>
+      <link>https://vrcca.github.io/about/</link>
+      <pubDate>Tue, 05 Mar 2019 16:47:29 UTC</pubDate>
+      
+      <guid>https://vrcca.github.io/about/</guid>
+      <description>Hi! I am a software developer writing about software development stuff. This is basically my knowledge dump, however I hope it helps you as well.</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>https://vrcca.github.io/contact/</link>
+      <pubDate>Tue, 05 Mar 2019 16:46:58 UTC</pubDate>
+      
+      <guid>https://vrcca.github.io/contact/</guid>
+      <description>   </description>
+    </item>
+    
+    <item>
+      <title>Getting The Current Page in Phoenix Framework</title>
+      <link>https://vrcca.github.io/post/getting-the-current-page-in-phoenix/</link>
+      <pubDate>Tue, 05 Mar 2019 16:31:19 UTC</pubDate>
+      
+      <guid>https://vrcca.github.io/post/getting-the-current-page-in-phoenix/</guid>
+      <description>When programming in Phoenix Framework, you sometimes need to code a decision point based on the current page. To do this, we can make use of Plug.Conn&amp;rsquo;s path_info field and compare it with Routes.
+Let&amp;rsquo;s say you have the following piece of code:
+&amp;lt;%= if is_accounts_page(@conn) %&amp;gt; &amp;lt;div&amp;gt; # Account related content &amp;lt;/div&amp;gt; &amp;lt;% end %&amp;gt;  To find out if the user is in the account route, you can compare the current path with the Account page route in LayoutView:</description>
+    </item>
+    
+    <item>
+      <title>Writing Better Tests In Java</title>
+      <link>https://vrcca.github.io/post/writing-better-tests-in-java/</link>
+      <pubDate>Tue, 30 Oct 2018 12:14:02 UTC</pubDate>
+      
+      <guid>https://vrcca.github.io/post/writing-better-tests-in-java/</guid>
+      <description>Ever wondered why your tests break everytime you change production code? Are your tests difficult to read? This usually happens due to tests being too attached to the corresponding implementation. I will show a few techniques on how to writte better tests in Java.
+PS.: I will call &amp;laquo;Production Code&amp;raquo;, the code that you write to make your tests pass.
+Changing Production Code Breaks Many Tests When your tests are too specific and bound to its implementation, you will notice that any changes to the production code such as extracting a method, extracting a class, and others, breaks your unit tests.</description>
+    </item>
+    
+    <item>
+      <title>Hello World!</title>
+      <link>https://vrcca.github.io/post/my-first-post/</link>
+      <pubDate>Thu, 18 Oct 2018 15:21:02 UTC</pubDate>
+      
+      <guid>https://vrcca.github.io/post/my-first-post/</guid>
+      <description>Hello world! Here is my first post.
+I shall begin it explaining how I setup this blog using GitHub Pages, GitLab and Hugo.
+Creating a new GitHub Pages To setup a new GitHub page, the website tutorial is pretty straightforward, so I will skip this.
+Hugo Hugo is a static website generator built on Go. It is extremely fast and requires little setup to start using it.
+To install it is as simple as:</description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>https://vrcca.github.io/search/</link>
+      <pubDate>Sun, 09 Nov 2014 13:49:44 &#43;0400</pubDate>
+      
+      <guid>https://vrcca.github.io/search/</guid>
+      <description>      $(document).ready(function() { $(&#39;#tipue_search_input&#39;).tipuesearch({ &#39;mode&#39; : &#39;json&#39;, &#39;show&#39;: 10, &#39;newWindow&#39;: true, &#39;wholeWords&#39;: false }); });     </description>
+    </item>
+    
+  </channel>
+</rss>
+

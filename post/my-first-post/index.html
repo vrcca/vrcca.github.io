@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hello World! - Atomic Reference</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <link rel="canonical" href="https://vrcca.github.io/post/my-first-post/">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  <link rel="stylesheet" type="text/css" href="https://vrcca.github.io/css/combined-min.css">
+  <link rel="stylesheet" type="text/css" href="https://vrcca.github.io/tipuesearch/tipuesearch.css">
+  <link rel="icon" type="image/png" href="https://vrcca.github.io/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="https://vrcca.github.io/favicon-16x16.png" sizes="16x16" />
+
+</head>
+<body class="">
+
+<div class="site-wrap">
+  <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="https://vrcca.github.io" class="site-title">Atomic Reference</a>
+      <nav class="site-nav right">
+      <a href="https://vrcca.github.io/about/">About</a>
+<a href="https://vrcca.github.io/tags/">Tags</a>
+<a href="https://vrcca.github.io/contact/">Contact</a>
+<form class="navbar-search" action="https://vrcca.github.io/search/index.html"
+    onsubmit="return validateForm(this.elements['q'].value);">
+    <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input">
+
+</form>
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+  <div class="post p2 p-responsive wrap" role="main">
+    <div class="measure">
+      <div class="post-header mb2">
+        <h1 class="py2">Hello World!</h1>
+        <span class="post-meta">Oct 18, 2018 by Vitor Cavalcanti de Albuquerque</span><br>
+        
+      </div>
+
+      <article class="post-content">
+      
+
+<p>Hello world! Here is my first post.</p>
+
+<p>I shall begin it explaining how I setup this blog using GitHub Pages, GitLab and Hugo.</p>
+
+<h2 id="creating-a-new-github-pages">Creating a new GitHub Pages</h2>
+
+<p>To setup a new GitHub page, the <a href="https://pages.github.com/" target="_blank">website tutorial</a> is pretty straightforward, so I will skip this.</p>
+
+<h2 id="hugo">Hugo</h2>
+
+<p><a href="https://gohugo.io/" target="_blank">Hugo</a> is a static website generator built on Go. It is extremely fast and requires little setup to start using it.</p>
+
+<p>To install it is as simple as:</p>
+
+<p><strong>MacOS</strong><br />
+<code>brew install hugo</code></p>
+
+<p><strong>Linux</strong><br />
+<code>apt install hugo</code> or <code>snap install hugo</code></p>
+
+<p>Hugo has <a href="https://themes.gohugo.io/" target="_blank">many themes</a> you can choose. For this post I will use <a href="https://themes.gohugo.io/pixyll/" target="_blank">Pixyll</a> which is the same I used for this blog. It has support to Google Analytics, Markdown and Disqus integration, which is something I was looking for.</p>
+
+<h3 id="up-and-running">Up and running</h3>
+
+<p>After installing Hugo, you can create a new site with:</p>
+
+<pre><code>$ hugo new site my-new-blog
+</code></pre>
+
+<p>And you can start a server with:</p>
+
+<pre><code>$ hugo server
+</code></pre>
+
+<p>This will build all static files and keep an eye on any updates you do in your posts.</p>
+
+<p>To create a new post just type:</p>
+
+<pre><code>$ hugo new post file-name
+</code></pre>
+
+<h3 id="installing-a-theme">Installing a theme</h3>
+
+<p>You can follow the instructions of the theme, but usually it goes like this:</p>
+
+<pre><code>$ cd my-new-blog
+$ git clone https://github.com/azmelanar/hugo-theme-pixyll.git themes/hugo-theme-pixyll
+
+# Copies default configurations from themes to your new site
+$ cp -R themes/hugo-theme-pixyll/exampleSite/config.toml ./config.toml
+</code></pre>
+
+<p>After that, it&rsquo;s important for you to edit the file <code>config.toml</code> and properly set your name, baseUrl, GitHub page, etc. You can run <code>hugo server</code> to make sure that it works properly.</p>
+
+<h3 id="manually-deploying-your-changes-to-github-pages">Manually deploying your changes to GitHub pages</h3>
+
+<p>After creating your GitHub Pages, clone it in the parent directory that has your new hugo website. Then you will have to copy all static files from your hugo website to the GitHub pages repository, commit and push the changes.</p>
+
+<p>You can manually deploy your new blog with the following commands:</p>
+
+<pre><code># Generates the static files required by GitHub pages
+$ hugo -d ../my-new-blog.github.io/
+$ cd ../my-new-blog.github.io/
+$ git commit -am &quot;My new blog&quot;
+$ git push
+</code></pre>
+
+<p>If you try to access your GitHub pages, you should see it working as it would locally.</p>
+
+<h3 id="automatically-building-deploying-from-gitlab">Automatically building &amp; deploying from GitLab</h3>
+
+<p>If you are like me, you probably don&rsquo;t want to remember to type the commands above for each post. So I researched how to automatically generate a new blog version automatically, but the solution ends up either creating a <code>deploy.sh</code> script to manually run it or use CI. We are going to do the latter with <a href="https://about.gitlab.com/features/gitlab-ci-cd/" target="_blank">GitLab CI</a>.</p>
+
+<p><strong>Why GitLab?</strong></p>
+
+<ul>
+<li>It has free private repositories;</li>
+<li>CI/CD built-in;</li>
+<li>Kanban boards;</li>
+<li>WebIDE (you can create your blog posts in your browser. No need to install hugo.)</li>
+<li>Free private groups; and more!</li>
+</ul>
+
+<p>Let&rsquo;s start by <strong>creating our GitLab repository</strong> first:</p>
+
+<ol>
+<li>Create a new user account in <a href="https://gitlab.com/users/sign_in" target="_blank">GitLab</a> for free.</li>
+<li>Create a <a href="https://gitlab.com/projects/new" target="_blank">new project</a> with whatever name you like. <em>Here I made my repository private, but it is up to you to decide.</em></li>
+<li>Clone the repository locally and push the files from your hugo setup.</li>
+</ol>
+
+<p>Now we need to tell GitLab to install Hugo, build our static files and deploy them to GitHub (just like we would do manually). Like I said before, we are going to use GitLab CI.
+To setup GitLab CI it&rsquo;s pretty simple, just add a file named <code>.gitlab-ci.yml</code> to the root of your GitLab project, and it should start building. This file is used to tell GitLab how to build your repository.</p>
+
+<p>The steps we need to reproduce in GitLab basically are install, build and deploy:</p>
+
+<ol>
+<li>Somehow <strong>install</strong> Hugo somewhere;</li>
+<li>With the files from our GitLab repository, automatically <strong>build</strong> our blog;</li>
+<li><strong>Deploy</strong> the generated files to GitHub;</li>
+</ol>
+
+<p>Our build will have two phases: build and deploy. So add this to the top of your <code>.gitlab-ci.yml</code>:</p>
+
+<pre><code>stages:
+  - build
+  - deploy
+</code></pre>
+
+<p>The <code>stages</code> property is used so you can make GitLab follow the given order when running your build steps. In this case, it will run all the steps that has <code>build</code> set to <code>stage</code> property, then <code>deploy</code>.</p>
+
+<h4 id="installing-hugo-in-gitlab-ci">Installing Hugo in GitLab CI</h4>
+
+<p>All builds in GitLab run within a docker container, therefore, if your container run linux, you can run any Linux command in it.</p>
+
+<p>You can install Hugo and build your blog by adding this to our <code>.gitlab-ci.yml</code>:</p>
+
+<pre><code>build:
+  stage: build
+  before_script:
+    - curl -L -o hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.49.2/hugo_0.49.2_Linux-64bit.deb
+    - dpkg -i hugo.deb
+  script:
+    - mkdir -p build/ &amp;&amp; hugo -d build/
+  artifacts:
+    name: 'blog-$CI_COMMIT_REF_NAME'
+    expire_in: 1 day
+    paths:
+      - build/
+</code></pre>
+
+<p>The <code>artifacts</code> step tells GitLab that, after this whole step finishes, you want to keep the <code>build/</code> folder for a single day. This is useful in case you want to rollback changes or debug what your CI is doing.</p>
+
+<h4 id="automatically-deploying-to-github-pages">Automatically Deploying to GitHub Pages</h4>
+
+<p>Now that we have installed Hugo and generated our static website, we need to deploy to GitHub.</p>
+
+<p>Deploying to GitHub requires us to clone our git repository from GitHub, copy our new build to it, and commit and pushing the changes.</p>
+
+<pre><code>deploy:
+  stage: deploy
+  before_script:
+    - git clone https://githubusername:$GITHUB_ACCESS_TOKEN@github.com/githubusername/newblog.github.io.git blog-github/
+    - git config --global user.name &quot;AuthorName&quot;
+    - git config --global user.email &quot;email@myemail.com&quot;
+  script:
+    - rm -rf blog-github/content/
+    - cp -R build/* blog-github/
+    - cd blog-github/
+    - git diff --quiet &amp;&amp; git diff --staged --quiet || git commit -am &quot;$CI_COMMIT_TITLE&quot; &amp;&amp; git push
+  dependencies:
+    - build
+</code></pre>
+
+<p>The <code>before_script</code> clones your repository with an user and password. The <code>$GITHUB_ACCESS_TOKEN</code> variable could be replaced with your GitHub&rsquo;s password, but we don&rsquo;t want to expose that. We will revisit it later. It also sets your name and email for future commits.</p>
+
+<p>The <code>scripts</code> steps does this:</p>
+
+<ol>
+<li>Removes the content/ folder. This is needed because you would never be able to rename or remove a post otherwise.</li>
+<li>Copies all static content from the <code>build/</code> folder generated in the the previous step (see <code>dependencies</code> property) to the GitHub directory.</li>
+<li>The fourth step only adds and commits files if there are any changes in your <code>git diff</code> command. That&rsquo;s why we run a command with <code>||</code>. If there is no diff, there is no need to push things.</li>
+</ol>
+
+<p>The <code>dependencies</code> property tells GitLab that this step has dependencies with the <code>build</code> step. This enables us to reference files generated in other builds and maps a dependency graph between steps.</p>
+
+<p>After adding all this to <code>.gitlab-ci.yml</code> and commiting to GitLab, the build should be broken, but you should see that the CI/CD Pipelines are now being triggered on changes. We still need to set the <code>$GITHUB_ACCESS_TOKEN</code> variable.</p>
+
+<h4 id="defining-gitlab-ci-environment-variables">Defining GitLab CI Environment Variables</h4>
+
+<p>We don&rsquo;t want to expose our passwords in files, because other people could have access to it. If you are the only person that will ever have access to this repository, then you can ignore all this and just replace the variable in your configuration file. However, it is STRONGLY advised to keep your secrets somewhere safe.</p>
+
+<p><strong>Steps</strong><br />
+You can skip the steps below and go right to the page to create a token <a href="https://github.com/settings/tokens/new?scopes=public_repo" target="_blank">here</a>.</p>
+
+<ol>
+<li>In your GitHub, go to <strong>Settings</strong></li>
+<li>On the left bottom, click <strong>Developer Settings</strong></li>
+<li>Then <strong>Personal access tokens</strong></li>
+<li>Click on <strong>Generate new token</strong></li>
+<li>Select <code>public_repo</code></li>
+<li>Finally, Click <strong>Generate token</strong></li>
+</ol>
+
+<p>With your new token, go to your repository in GitLab.</p>
+
+<ol>
+<li>Click on <strong>Settings</strong></li>
+<li>Then <strong>CI / CD</strong></li>
+<li>Expand the <strong>Variables</strong> section.</li>
+<li>For variable name, type <code>GITHUB_ACCESS_TOKEN</code></li>
+<li>For the value, enter the new token.</li>
+<li>Mark it as <strong>Protected</strong></li>
+<li>Save variables</li>
+</ol>
+
+<p>If you try to run your pipeline now, it should pass correctly. You should also see that your changes are now being pushed to your GitHub pages and that your website is now being correctly displayed.</p>
+
+<p>I hope this helps! Thanks for reading my first post!</p>
+
+      </article>
+
+      <p class="post-meta">Tags:&nbsp;
+        
+            
+            <a href="https://vrcca.github.io/tags/blog">blog</a>
+        
+            ,&nbsp;
+            <a href="https://vrcca.github.io/tags/gitlab">gitlab</a>
+        
+            ,&nbsp;
+            <a href="https://vrcca.github.io/tags/hugo">hugo</a>
+        
+      </p>
+
+      
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "atomicreference" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+  </div>
+</div>
+    <footer class="footer">
+      <div class="p2 wrap">
+        <div class="measure mt1 center">
+      <nav class="social-icons icons">
+<a class="fa fa-rss rss" href="../../index.xml"></a>
+
+<a class="fa fa-twitter twitter" href="https://twitter.com/vrcca"></a>
+
+</nav>
+
+          <small>
+            Copyright &#169; 2017<br>
+            Powered by <a href="http://gohugo.io/" target="_blank">Hugo</a> &amp; <a href="https://github.com/azmelanar/hugo-theme-pixyll" target="_blank">Pixyll</a>
+          </small>
+        </div>
+      </div>
+    </footer>
+
+    
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-127725865-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>
+

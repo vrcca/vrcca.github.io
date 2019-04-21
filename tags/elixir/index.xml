@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elixir on Atomic Reference</title>
+    <link>https://vrcca.github.io/tags/elixir/</link>
+    <description>Recent content in Elixir on Atomic Reference</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 Mar 2019 16:31:19 +0000</lastBuildDate>
+    
+	<atom:link href="https://vrcca.github.io/tags/elixir/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting The Current Page in Phoenix Framework</title>
+      <link>https://vrcca.github.io/post/getting-the-current-page-in-phoenix/</link>
+      <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
+      
+      <guid>https://vrcca.github.io/post/getting-the-current-page-in-phoenix/</guid>
+      <description>When programming in Phoenix Framework, you sometimes need to code a decision point based on the current page. To do this, we can make use of Plug.Conn&amp;rsquo;s path_info field and compare it with Routes.
+Let&amp;rsquo;s say you have the following piece of code:
+&amp;lt;%= if is_accounts_page(@conn) %&amp;gt; &amp;lt;div&amp;gt; # Account related content &amp;lt;/div&amp;gt; &amp;lt;% end %&amp;gt;  To find out if the user is in the account route, you can compare the current path with the Account page route in LayoutView:</description>
+    </item>
+    
+  </channel>
+</rss>

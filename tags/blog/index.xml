@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Atomic Reference</title>
+    <link>https://vrcca.github.io/tags/blog/</link>
+    <description>Recent content in Blog on Atomic Reference</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 18 Oct 2018 15:21:02 +0000</lastBuildDate>
+    
+	<atom:link href="https://vrcca.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello World!</title>
+      <link>https://vrcca.github.io/post/my-first-post/</link>
+      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
+      
+      <guid>https://vrcca.github.io/post/my-first-post/</guid>
+      <description>Hello world! Here is my first post.
+I shall begin it explaining how I setup this blog using GitHub Pages, GitLab and Hugo.
+Creating a new GitHub Pages To setup a new GitHub page, the website tutorial is pretty straightforward, so I will skip this.
+Hugo Hugo is a static website generator built on Go. It is extremely fast and requires little setup to start using it.
+To install it is as simple as:</description>
+    </item>
+    
+  </channel>
+</rss>
