@@ -2,93 +2,93 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Atomic Reference</title>
-    <link>https://vrcca.github.io/tags/</link>
+    <link>https://blog.vitor.info/tags/</link>
     <description>Recent content in Tags on Atomic Reference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 18 Oct 2018 15:21:02 +0000</lastBuildDate>
     
-	<atom:link href="https://vrcca.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.vitor.info/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Blog</title>
-      <link>https://vrcca.github.io/tags/blog/</link>
+      <link>https://blog.vitor.info/tags/blog/</link>
       <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/tags/blog/</guid>
+      <guid>https://blog.vitor.info/tags/blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Elixir</title>
-      <link>https://vrcca.github.io/tags/elixir/</link>
+      <link>https://blog.vitor.info/tags/elixir/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/tags/elixir/</guid>
+      <guid>https://blog.vitor.info/tags/elixir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Gitlab</title>
-      <link>https://vrcca.github.io/tags/gitlab/</link>
+      <link>https://blog.vitor.info/tags/gitlab/</link>
       <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/tags/gitlab/</guid>
+      <guid>https://blog.vitor.info/tags/gitlab/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://vrcca.github.io/tags/hugo/</link>
+      <link>https://blog.vitor.info/tags/hugo/</link>
       <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/tags/hugo/</guid>
+      <guid>https://blog.vitor.info/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java</title>
-      <link>https://vrcca.github.io/tags/java/</link>
+      <link>https://blog.vitor.info/tags/java/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/tags/java/</guid>
+      <guid>https://blog.vitor.info/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Phoenix</title>
-      <link>https://vrcca.github.io/tags/phoenix/</link>
+      <link>https://blog.vitor.info/tags/phoenix/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/tags/phoenix/</guid>
+      <guid>https://blog.vitor.info/tags/phoenix/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Phoenixframework</title>
-      <link>https://vrcca.github.io/tags/phoenixframework/</link>
+      <link>https://blog.vitor.info/tags/phoenixframework/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/tags/phoenixframework/</guid>
+      <guid>https://blog.vitor.info/tags/phoenixframework/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tdd</title>
-      <link>https://vrcca.github.io/tags/tdd/</link>
+      <link>https://blog.vitor.info/tags/tdd/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/tags/tdd/</guid>
+      <guid>https://blog.vitor.info/tags/tdd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>https://vrcca.github.io/tags/test/</link>
+      <link>https://blog.vitor.info/tags/test/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/tags/test/</guid>
+      <guid>https://blog.vitor.info/tags/test/</guid>
       <description></description>
     </item>
     

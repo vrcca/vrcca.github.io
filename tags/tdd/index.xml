@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tdd on Atomic Reference</title>
-    <link>https://vrcca.github.io/tags/tdd/</link>
+    <link>https://blog.vitor.info/tags/tdd/</link>
     <description>Recent content in Tdd on Atomic Reference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 30 Oct 2018 12:14:02 +0000</lastBuildDate>
     
-	<atom:link href="https://vrcca.github.io/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.vitor.info/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Writing Better Tests In Java</title>
-      <link>https://vrcca.github.io/post/writing-better-tests-in-java/</link>
+      <link>https://blog.vitor.info/post/writing-better-tests-in-java/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
       
-      <guid>https://vrcca.github.io/post/writing-better-tests-in-java/</guid>
+      <guid>https://blog.vitor.info/post/writing-better-tests-in-java/</guid>
       <description>Ever wondered why your tests break everytime you change production code? Are your tests difficult to read? This usually happens due to tests being too attached to the corresponding implementation. I will show a few techniques on how to writte better tests in Java.
 PS.: I will call &amp;laquo;Production Code&amp;raquo;, the code that you write to make your tests pass.
 Changing Production Code Breaks Many Tests When your tests are too specific and bound to its implementation, you will notice that any changes to the production code such as extracting a method, extracting a class, and others, breaks your unit tests.</description>
