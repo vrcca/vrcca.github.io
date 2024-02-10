@@ -340,10 +340,36 @@ Run <code>mix phx.server</code>, open the browser at http://localhost:4000 and g
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-28">28</a></span><span>  <span style="color:#007020;font-weight:bold">def</span> down <span style="color:#007020;font-weight:bold">do</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-29">29</a></span><span>  <span style="color:#007020;font-weight:bold">end</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-30">30</a></span><span><span style="color:#007020;font-weight:bold">end</span>
-</span></span></code></pre></div><blockquote>
-<p><strong>WARNING: DO NOT USE THIS IN PRODUCTION!</strong></p>
-<p>Reach out to your DB expert about the <a href="https://www.postgresql.org/docs/16/sql-grant.html">grants</a> and <a href="https://www.postgresql.org/docs/16/sql-alterdefaultprivileges.html">default privileges</a>! Do not use this blindly in production! Privilege levels is out of scope of this post, so for simplicity I am granting all on everything.</p>
-</blockquote>
+</span></span></code></pre></div>
+
+
+<div class="alert-box error">
+  
+    <h3 class="alert-title">DO NOT USE THIS IN PRODUCTION!</h3>
+  
+  <p class="flex flex-row items-center gap-2">
+    
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="alert-icon"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+      />
+    </svg>
+    
+    
+Reach out to your DB expert about the grants and default privileges! Do not use this blindly in production! Privilege levels is out of scope of this post, but for simplicity I am granting all on everything.
+
+  </p>
+</div>
+
 <h3 id="create-the-policy">Create the Policy</h3>
 <p>I&rsquo;ll do it only for the lists table and won&rsquo;t bother about the todos table, but <strong>we should</strong>! Feel free to do it as an exercise.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a></span><span>mix ecto.gen.migration create_rls_policy_for_lists
