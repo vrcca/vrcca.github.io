@@ -1,10 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://blog.vitor.info/post/writing-better-tests-in-java/</loc><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://blog.vitor.info/post/row-level-security-with-postgres-in-elixir-part-1/</loc><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://blog.vitor.info/post/my-first-post/</loc><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://blog.vitor.info/post/getting-the-current-page-in-phoenix/</loc><changefreq>daily</changefreq><priority>0.5</priority></url>
-
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://example.org/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/blog/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/elixir/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
+    <loc>http://example.org/posts/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/postgres/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
+    <loc>http://example.org/posts/row-level-security-with-postgres-in-elixir-part-1/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
+    <loc>http://example.org/about/</loc>
+    <lastmod>2019-03-05T16:47:29+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/contact/</loc>
+    <lastmod>2019-03-05T16:46:58+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/posts/getting-the-current-page-in-phoenix/</loc>
+    <lastmod>2019-03-05T16:31:19+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/phoenix/</loc>
+    <lastmod>2019-03-05T16:31:19+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/phoenixframework/</loc>
+    <lastmod>2019-03-05T16:31:19+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/java/</loc>
+    <lastmod>2018-10-30T12:14:02+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/tdd/</loc>
+    <lastmod>2018-10-30T12:14:02+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/test/</loc>
+    <lastmod>2018-10-30T12:14:02+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/posts/writing-better-tests-in-java/</loc>
+    <lastmod>2018-10-30T12:14:02+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/gitlab/</loc>
+    <lastmod>2018-10-18T15:21:02+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/posts/my-first-post/</loc>
+    <lastmod>2018-10-18T15:21:02+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/tags/hugo/</loc>
+    <lastmod>2018-10-18T15:21:02+00:00</lastmod>
+  </url><url>
+    <loc>http://example.org/search/</loc>
+    <lastmod>2014-11-09T13:49:44+04:00</lastmod>
+  </url><url>
+    <loc>http://example.org/categories/</loc>
+  </url><url>
+    <loc>http://example.org/categories/css/</loc>
+  </url><url>
+    <loc>http://example.org/categories/javascript/</loc>
+  </url><url>
+    <loc>http://example.org/categories/uncategories/</loc>
+  </url>
 </urlset>

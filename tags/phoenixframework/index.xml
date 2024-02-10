@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>phoenixframework on Atomic Reference</title>
-    <link>https://blog.vitor.info/tags/phoenixframework/</link>
-    <description>Recent content in phoenixframework on Atomic Reference</description>
+    <title>phoenixframework on Enhanced Lowkey Hugo</title>
+    <link>http://example.org/tags/phoenixframework/</link>
+    <description>Recent content in phoenixframework on Enhanced Lowkey Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 05 Mar 2019 16:31:19 +0000</lastBuildDate><atom:link href="https://blog.vitor.info/tags/phoenixframework/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-US</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Tue, 05 Mar 2019 16:31:19 +0000</lastBuildDate>
+    <atom:link href="http://example.org/tags/phoenixframework/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting The Current Page in Phoenix Framework</title>
-      <link>https://blog.vitor.info/post/getting-the-current-page-in-phoenix/</link>
+      <link>http://example.org/posts/getting-the-current-page-in-phoenix/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
-      
-      <guid>https://blog.vitor.info/post/getting-the-current-page-in-phoenix/</guid>
-      <description>When programming in Phoenix Framework, you sometimes need to code a decision point based on the current page. To do this, we can make use of Plug.Conn&amp;rsquo;s path_info field and compare it with Routes.
-Let&amp;rsquo;s say you have the following piece of code:
-&amp;lt;%= if is_accounts_page(@conn) %&amp;gt; &amp;lt;div&amp;gt; # Account related content &amp;lt;/div&amp;gt; &amp;lt;% end %&amp;gt; To find out if the user is in the account route, you can compare the current path with the Account page route in LayoutView:</description>
+      <guid>http://example.org/posts/getting-the-current-page-in-phoenix/</guid>
+      <description>When programming in Phoenix Framework, you sometimes need to code a decision point based on the current page.</description>
     </item>
-    
   </channel>
 </rss>

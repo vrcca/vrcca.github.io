@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tdd on Atomic Reference</title>
-    <link>https://blog.vitor.info/tags/tdd/</link>
-    <description>Recent content in tdd on Atomic Reference</description>
+    <title>tdd on Enhanced Lowkey Hugo</title>
+    <link>http://example.org/tags/tdd/</link>
+    <description>Recent content in tdd on Enhanced Lowkey Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 30 Oct 2018 12:14:02 +0000</lastBuildDate><atom:link href="https://blog.vitor.info/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-US</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Tue, 30 Oct 2018 12:14:02 +0000</lastBuildDate>
+    <atom:link href="http://example.org/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Writing Better Tests In Java</title>
-      <link>https://blog.vitor.info/post/writing-better-tests-in-java/</link>
+      <link>http://example.org/posts/writing-better-tests-in-java/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
-      
-      <guid>https://blog.vitor.info/post/writing-better-tests-in-java/</guid>
-      <description>Ever wondered why your tests break everytime you change production code? Are your tests difficult to read? This usually happens due to tests being too attached to the corresponding implementation. I will show a few techniques on how to writte better tests in Java.
-PS.: I will call &amp;ldquo;Production Code&amp;rdquo;, the code that you write to make your tests pass.
-Changing Production Code Breaks Many Tests When your tests are too specific and bound to its implementation, you will notice that any changes to the production code such as extracting a method, extracting a class, and others, breaks your unit tests.</description>
+      <guid>http://example.org/posts/writing-better-tests-in-java/</guid>
+      <description>Ever wondered why your tests break everytime you change production code? Are your tests difficult to read?</description>
     </item>
-    
   </channel>
 </rss>
