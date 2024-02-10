@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.vitor.info/</loc>
-    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
-  </url><url>
     <loc>https://blog.vitor.info/tags/blog/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
+    <loc>https://blog.vitor.info/categories/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
     <loc>https://blog.vitor.info/tags/elixir/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
+    <loc>https://blog.vitor.info/categories/elixir/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
+    <loc>https://blog.vitor.info/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
     <loc>https://blog.vitor.info/posts/</loc>
@@ -23,11 +29,11 @@
     <loc>https://blog.vitor.info/tags/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
+    <loc>https://blog.vitor.info/categories/tutorials/</loc>
+    <lastmod>2024-02-10T12:39:02+01:00</lastmod>
+  </url><url>
     <loc>https://blog.vitor.info/about/</loc>
     <lastmod>2019-03-05T16:47:29+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.vitor.info/contact/</loc>
-    <lastmod>2019-03-05T16:46:58+00:00</lastmod>
   </url><url>
     <loc>https://blog.vitor.info/posts/getting-the-current-page-in-phoenix/</loc>
     <lastmod>2019-03-05T16:31:19+00:00</lastmod>
@@ -58,11 +64,6 @@
   </url><url>
     <loc>https://blog.vitor.info/tags/hugo/</loc>
     <lastmod>2018-10-18T15:21:02+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.vitor.info/search/</loc>
-    <lastmod>2014-11-09T13:49:44+04:00</lastmod>
-  </url><url>
-    <loc>https://blog.vitor.info/categories/</loc>
   </url><url>
     <loc>https://blog.vitor.info/categories/css/</loc>
   </url><url>

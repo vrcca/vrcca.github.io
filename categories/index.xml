@@ -7,7 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
+    <lastBuildDate>Sat, 10 Feb 2024 12:39:02 +0100</lastBuildDate>
     <atom:link href="https://blog.vitor.info/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elixir</title>
+      <link>https://blog.vitor.info/categories/elixir/</link>
+      <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
+      <guid>https://blog.vitor.info/categories/elixir/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorials</title>
+      <link>https://blog.vitor.info/categories/tutorials/</link>
+      <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
+      <guid>https://blog.vitor.info/categories/tutorials/</guid>
+      <description></description>
+    </item>
     <item>
       <title>CSS</title>
       <link>https://blog.vitor.info/categories/css/</link>

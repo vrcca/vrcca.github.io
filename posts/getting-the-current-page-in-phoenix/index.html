@@ -45,14 +45,14 @@
      
     
     <li>
-      <a href="/posts" class="">
+      <a href="/" class="">
         Home
       </a>
     </li>
     
     <li>
-      <a href="/about" class="">
-        About me
+      <a href="/posts" class="">
+        Posts
       </a>
     </li>
     
@@ -140,6 +140,12 @@
       </time>
 
        
+       — 
+        
+          <a class="categories" href="/categories/tutorials/" alt="Tutorials">
+            Tutorials
+          </a>
+         
       
     </div>
   </header>
@@ -148,19 +154,19 @@
 
   <section><p>When programming in <a href="https://phoenixframework.org">Phoenix Framework</a>, you sometimes need to code a decision point based on the current page. To do this, we can make use of <a href="https://hexdocs.pm/plug/Plug.Conn.html">Plug.Conn&rsquo;s</a> <code>path_info</code> field and compare it with <code>Routes</code>.</p>
 <p>Let&rsquo;s say you have the following piece of code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;</span>%<span style="color:#ff79c6">=</span> <span style="color:#ff79c6">if</span> is_accounts_page(<span style="color:#50fa7b">@conn</span>) %<span style="color:#ff79c6">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;</span>div<span style="color:#ff79c6">&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># Account related content</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/</span>div<span style="color:#ff79c6">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;</span>% <span style="color:#ff79c6">end</span> %<span style="color:#ff79c6">&gt;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a></span><span><span style="color:#666">&lt;</span><span style="">%</span><span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">if</span> is_accounts_page(<span style="color:#4070a0">@conn</span>) <span style="">%</span><span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a></span><span>    <span style="color:#666">&lt;</span>div<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a></span><span>        <span style="color:#60a0b0;font-style:italic"># Account related content</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a></span><span>    <span style="color:#666">&lt;/</span>div<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a></span><span><span style="color:#666">&lt;</span><span style="">%</span> <span style="color:#007020;font-weight:bold">end</span> <span style="">%</span><span style="color:#666">&gt;</span>
 </span></span></code></pre></div><p>To find out if the user is in the account route, you can compare the current path with the Account page route in <code>LayoutView</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">def</span> is_accounts_page(conn <span style="color:#ff79c6">=</span> %<span style="color:#50fa7b">Plug.Conn</span>{<span style="color:#f1fa8c">path_info</span>: path_info}) <span style="color:#ff79c6">do</span>
-</span></span><span style="display:flex;"><span>  path_info
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">|&gt;</span> join_path()
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">|&gt;</span> <span style="color:#50fa7b">String</span><span style="color:#ff79c6">.</span>equivalent?(<span style="color:#50fa7b">Routes</span><span style="color:#ff79c6">.</span>accounts_path(conn, <span style="color:#f1fa8c">:index</span>))
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">defp</span> join_path(path_info), <span style="color:#f1fa8c">do</span>: <span style="color:#f1fa8c">&#34;/&#34;</span> <span style="color:#ff79c6">&lt;&gt;</span> <span style="color:#50fa7b">Enum</span><span style="color:#ff79c6">.</span>join(path_info, <span style="color:#f1fa8c">&#34;/&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a></span><span><span style="color:#007020;font-weight:bold">def</span> is_accounts_page(conn <span style="color:#666">=</span> %<span style="color:#0e84b5;font-weight:bold">Plug.Conn</span>{<span style="color:#517918">path_info</span>: path_info}) <span style="color:#007020;font-weight:bold">do</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a></span><span>  path_info
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a></span><span>  <span style="color:#666">|&gt;</span> join_path()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a></span><span>  <span style="color:#666">|&gt;</span> <span style="color:#0e84b5;font-weight:bold">String</span><span style="color:#666">.</span>equivalent?(<span style="color:#0e84b5;font-weight:bold">Routes</span><span style="color:#666">.</span>accounts_path(conn, <span style="color:#517918">:index</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5">5</a></span><span><span style="color:#007020;font-weight:bold">end</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6">6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7">7</a></span><span><span style="color:#007020;font-weight:bold">defp</span> join_path(path_info), <span style="color:#517918">do</span>: <span style="color:#4070a0">&#34;/&#34;</span> <span style="color:#666">&lt;&gt;</span> <span style="color:#0e84b5;font-weight:bold">Enum</span><span style="color:#666">.</span>join(path_info, <span style="color:#4070a0">&#34;/&#34;</span>)
 </span></span></code></pre></div><p>As we can see, in the first line we extract the <code>path_info</code> from <code>conn</code>. Then we join all path parts into a single string. Finally, we compare the current path with the <code>Routes.accounts_path</code>.</p>
 <p>You can go even further and make this function work for any page by passing the route path as argument.</p>
 <p>I hope it helps. Please, let me know what you thought about this approach.</p>
@@ -168,6 +174,29 @@
 
   
     
+  
+    <div class="giscus-comment">
+    <script
+      src="https://giscus.app/client.js"
+      data-repo="vrcca/vrcca.github.io"
+      data-repo-id="MDEwOlJlcG9zaXRvcnkyNTQzODE2Ng=="
+      data-category="Announcements"
+      data-category-id="DIC_kwDOAYQn1s4CdHIg"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="light"
+      data-lang="en"
+      
+        data-loading="lazy"
+      
+      crossorigin="anonymous"
+      async
+    >
+    </script>
+</div>
   
 
     
@@ -215,15 +244,15 @@
     
     
     <li>    
-      <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+      <a href="https://genserver.social/vitor" target="_blank" rel="noopener noreferrer">Fediverse</a>
     </li>
     
     <li>    
-      <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://linkedin.com/in/vrcca" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </li>
     
     <li>    
-      <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://github.com/vrcca" target="_blank" rel="noopener noreferrer">GitHub</a>
     </li>
     
     

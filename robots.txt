@@ -1,10 +1,14 @@
 User-agent: *
 
-Disallow: /
-
 Disallow: /tags/blog/
 
+Disallow: /categories/
+
 Disallow: /tags/elixir/
+
+Disallow: /categories/elixir/
+
+Disallow: /
 
 Disallow: /posts/
 
@@ -14,9 +18,9 @@ Disallow: /posts/row-level-security-with-postgres-in-elixir-part-1/
 
 Disallow: /tags/
 
-Disallow: /about/
+Disallow: /categories/tutorials/
 
-Disallow: /contact/
+Disallow: /about/
 
 Disallow: /posts/getting-the-current-page-in-phoenix/
 
@@ -37,10 +41,6 @@ Disallow: /tags/gitlab/
 Disallow: /posts/my-first-post/
 
 Disallow: /tags/hugo/
-
-Disallow: /search/
-
-Disallow: /categories/
 
 Disallow: /categories/css/
 
