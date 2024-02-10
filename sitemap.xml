@@ -3,6 +3,7 @@
 xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://blog.vitor.info/post/writing-better-tests-in-java/</loc><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://blog.vitor.info/post/row-level-security-with-postgres-in-elixir-part-1/</loc><changefreq>daily</changefreq><priority>0.5</priority></url>
 <url><loc>https://blog.vitor.info/post/my-first-post/</loc><changefreq>daily</changefreq><priority>0.5</priority></url>
 <url><loc>https://blog.vitor.info/post/getting-the-current-page-in-phoenix/</loc><changefreq>daily</changefreq><priority>0.5</priority></url>
 
