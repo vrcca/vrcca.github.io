@@ -42,8 +42,4 @@ Disallow: /posts/my-first-post/
 
 Disallow: /tags/hugo/
 
-Disallow: /categories/css/
-
-Disallow: /categories/javascript/
-
 Disallow: /categories/uncategories/
