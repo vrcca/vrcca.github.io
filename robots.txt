@@ -1,1 +1,49 @@
 User-agent: *
+
+Disallow: /
+
+Disallow: /tags/blog/
+
+Disallow: /tags/elixir/
+
+Disallow: /posts/
+
+Disallow: /tags/postgres/
+
+Disallow: /posts/row-level-security-with-postgres-in-elixir-part-1/
+
+Disallow: /tags/
+
+Disallow: /about/
+
+Disallow: /contact/
+
+Disallow: /posts/getting-the-current-page-in-phoenix/
+
+Disallow: /tags/phoenix/
+
+Disallow: /tags/phoenixframework/
+
+Disallow: /tags/java/
+
+Disallow: /tags/tdd/
+
+Disallow: /tags/test/
+
+Disallow: /posts/writing-better-tests-in-java/
+
+Disallow: /tags/gitlab/
+
+Disallow: /posts/my-first-post/
+
+Disallow: /tags/hugo/
+
+Disallow: /search/
+
+Disallow: /categories/
+
+Disallow: /categories/css/
+
+Disallow: /categories/javascript/
+
+Disallow: /categories/uncategories/
