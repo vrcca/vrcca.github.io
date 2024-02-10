@@ -136,7 +136,7 @@
     <div class="meta">
       
       <time datetime="2024-02-10 12:39:02 &#43;0100 &#43;0100" title='Sat, Feb 10, 2024, 12:39 PM &#43;0100'>
-        10/02/2024 - Estimated reading time: 9 minutes
+        10/02/2024 - Estimated reading time: 10 minutes
       </time>
 
        
@@ -188,9 +188,9 @@
 <p><code>git clone git@github.com:chrismccord/todo_trek.git</code></p>
 <p>If any of the examples below fails, the latest commit for me was <code>4d7357428993ce46625e1d39cb0fda9c0a832fc6</code>.</p>
 <p>The versions I used:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a></span><span>$ mise current
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a></span><span>erlang 26.2.1
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a></span><span>elixir 1.16.0-otp-26
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ mise current
+</span></span><span style="display:flex;"><span>erlang 26.2.1
+</span></span><span style="display:flex;"><span>elixir 1.16.0-otp-26
 </span></span></code></pre></div><h4 id="start-postgres">Start Postgres</h4>
 <p>I am going to use Docker in this example, but you can use it however you want, as long as you set a superuser credential in the <code>config/dev.exs</code> because I will be assuming so:
 <code>docker run --name todotrek -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres</code></p>
@@ -309,7 +309,7 @@
 <h1 id="fixing-the-app-with-postgres-rls">Fixing the app with Postgres RLS</h1>
 <p>Alright! Let&rsquo;s create the migrations I mentioned, then fix this with RLS!</p>
 <h3 id="create-the-rls-user">Create the RLS user</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a></span><span>mix ecto.gen.migration create_restricted_user
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ mix ecto.gen.migration create_restricted_user
 </span></span></code></pre></div><p>Open the generated file, and let&rsquo;s just follow the example from the Migration plan:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1"> 1</a></span><span><span style="color:#60a0b0;font-style:italic"># priv/repo/migrations/20240120163737_create_restricted_user.exs</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-2"> 2</a></span><span><span style="color:#007020;font-weight:bold">defmodule</span> <span style="color:#0e84b5;font-weight:bold">TodoTrek.Repo.Migrations.CreateRestrictedUser</span> <span style="color:#007020;font-weight:bold">do</span>
@@ -373,7 +373,7 @@ Reach out to your DB expert about the grants and default privileges! Do not use 
 
 <h3 id="create-the-policy">Create the Policy</h3>
 <p>I&rsquo;ll do it only for the lists table and won&rsquo;t bother about the todos table, but <strong>we should</strong>! Feel free to do it as an exercise.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a></span><span>mix ecto.gen.migration create_rls_policy_for_lists
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ mix ecto.gen.migration create_rls_policy_for_lists
 </span></span></code></pre></div><p>Open the generated file, and let&rsquo;s just follow the example from the Migration plan again:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1"> 1</a></span><span><span style="color:#60a0b0;font-style:italic"># priv/repo/migrations/20240120164315_create_rls_policy_for_lists.exs</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-2"> 2</a></span><span><span style="color:#007020;font-weight:bold">defmodule</span> <span style="color:#0e84b5;font-weight:bold">TodoTrek.Repo.Migrations.CreateRlsPolicyForLists</span> <span style="color:#007020;font-weight:bold">do</span>
@@ -396,8 +396,8 @@ Reach out to your DB expert about the grants and default privileges! Do not use 
 </span></span></code></pre></div><p>See that <code>::bigint</code> in there? That&rsquo;s necessary because the <code>user_id</code> is an integer, but the <code>current_setting</code> returns <code>text</code>. It needs conversion!</p>
 <h3 id="rls-in-action">RLS in action!</h3>
 <p>Run <code>mix ecto.migrate</code>, and let&rsquo;s see it in action in IEX!</p>
-<pre tabindex="0"><code>iex -S mix phx.server
-</code></pre><p><strong>Without RLS</strong>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ iex -S mix phx.server
+</span></span></code></pre></div><p><strong>Without RLS</strong>
 Assuming that you created more account with Todos, running this should return all lists from all users:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-1">1</a></span><span>iex<span style="color:#666">&gt;</span> lists <span style="color:#666">=</span> <span style="color:#0e84b5;font-weight:bold">TodoTrek.Todos</span><span style="color:#666">.</span>active_lists(%<span style="color:#0e84b5;font-weight:bold">TodoTrek.Scope</span>{}, <span style="color:#40a070">10</span>)
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-2">2</a></span><span>iex<span style="color:#666">&gt;</span> <span style="color:#0e84b5;font-weight:bold">Enum</span><span style="color:#666">.</span>map(lists, <span style="color:#666">&amp;</span> <span style="color:#d55537;font-weight:bold">&amp;1</span><span style="color:#666">.</span>user_id) <span style="color:#666">|&gt;</span> <span style="color:#0e84b5;font-weight:bold">Enum</span><span style="color:#666">.</span>uniq()
