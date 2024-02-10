@@ -183,25 +183,26 @@
 <h1 id="the-example">The example</h1>
 <p>I&rsquo;d like to explain how to do the Postgres way by changing an existing app, so let’s add row-level security to Chris McCord’s <a href="https://github.com/chrismccord/todo_trek/">TodoTrek</a>. It currently relies on the tenant_id checks, but we’ll make it work with Postgres RLS instead!</p>
 <h3 id="running-the-app">Running the app</h3>
-<p><strong>Let&rsquo;s start by cloning the repo</strong>:
-<code>git clone git@github.com:chrismccord/todo_trek.git</code></p>
+<p>Let&rsquo;s begin by cloning the repo, then starting the DB and playing with it a bit.</p>
+<h4 id="clone-the-repo">Clone the repo</h4>
+<p><code>git clone git@github.com:chrismccord/todo_trek.git</code></p>
 <p>If any of the examples below fails, the latest commit for me was <code>4d7357428993ce46625e1d39cb0fda9c0a832fc6</code>.</p>
 <p>The versions I used:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a></span><span>$ mise current
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a></span><span>erlang 26.2.1
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a></span><span>elixir 1.16.0-otp-26
-</span></span></code></pre></div><p><strong>Start Postgres</strong>
-I am going to use Docker in this example, but you can use it however you want, as long as you set a superuser credential in the <code>config/dev.exs</code> because I will be assuming so:
+</span></span></code></pre></div><h4 id="start-postgres">Start Postgres</h4>
+<p>I am going to use Docker in this example, but you can use it however you want, as long as you set a superuser credential in the <code>config/dev.exs</code> because I will be assuming so:
 <code>docker run --name todotrek -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres</code></p>
 <blockquote>
 <p>TodoTrek locally runs with a Postgres user that has superuser powers, <code>postgres</code>, I’ll keep it like that because we are retrofitting an app, which in my experience was the most common scenario I found since startups wouldn’t bother about RLS before getting enough traction and real moneys.</p>
 </blockquote>
-<p><strong>Pull dependencies &amp; build</strong>
-Run:
+<h4 id="pull-dependencies--build">Pull dependencies &amp; build</h4>
+<p>Run:
 <code>mix setup</code></p>
 <p>If we try to run <code>mix test</code>, we&rsquo;ll see about 17 errors. I&rsquo;ll just accept fate and rely on manual testing.</p>
-<p><strong>Start the app</strong>
-Run <code>mix phx.server</code>, open the browser at http://localhost:4000 and get used to it! To log in, just type &ldquo;password password&rdquo; in the password field.</p>
+<h4 id="start-the-app">Start the app</h4>
+<p>Run <code>mix phx.server</code>, open the browser at http://localhost:4000 and get used to it! To log in, just type &ldquo;password password&rdquo; in the password field.</p>
 <p>Now create a new user so that we can test it manually. I created a new one with the same password above, but the email <a href="mailto:anotheruser@example.com">anotheruser@example.com</a>. Also create some Todos for it.</p>
 
 
