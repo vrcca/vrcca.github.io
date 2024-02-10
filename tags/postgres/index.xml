@@ -6,11 +6,11 @@
     <description>Recent content in postgres on Atomic Reference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Oct 2018 15:21:02 +0000</lastBuildDate><atom:link href="https://blog.vitor.info/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Feb 2024 12:39:02 +0100</lastBuildDate><atom:link href="https://blog.vitor.info/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hello World!</title>
+      <title>Row-level Security with Postgres in Elixir</title>
       <link>https://blog.vitor.info/post/row-level-security-with-postgres-in-elixir-part-1/</link>
-      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
+      <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
       
       <guid>https://blog.vitor.info/post/row-level-security-with-postgres-in-elixir-part-1/</guid>
       <description>This is a dump from my recent experience implementing Row-level security in Elixir and Postgres for dynamically defined tenants.

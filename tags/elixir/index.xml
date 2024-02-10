@@ -6,7 +6,18 @@
     <description>Recent content in elixir on Atomic Reference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Mar 2019 16:31:19 +0000</lastBuildDate><atom:link href="https://blog.vitor.info/tags/elixir/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Feb 2024 12:39:02 +0100</lastBuildDate><atom:link href="https://blog.vitor.info/tags/elixir/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Row-level Security with Postgres in Elixir</title>
+      <link>https://blog.vitor.info/post/row-level-security-with-postgres-in-elixir-part-1/</link>
+      <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
+      
+      <guid>https://blog.vitor.info/post/row-level-security-with-postgres-in-elixir-part-1/</guid>
+      <description>This is a dump from my recent experience implementing Row-level security in Elixir and Postgres for dynamically defined tenants.
+What’s row-level security? We need Row-level security (or just RLS) when we want certain users of the app to only see certain rows of the database. A good example is a user that, once logged in a banking app, can only see their transactions instead of the other users.
+How? The Ecto way There are a few ways of doing that like checking for a user_id (a.</description>
+    </item>
+    
     <item>
       <title>Getting The Current Page in Phoenix Framework</title>
       <link>https://blog.vitor.info/post/getting-the-current-page-in-phoenix/</link>
@@ -16,17 +27,6 @@
       <description>When programming in Phoenix Framework, you sometimes need to code a decision point based on the current page. To do this, we can make use of Plug.Conn&amp;rsquo;s path_info field and compare it with Routes.
 Let&amp;rsquo;s say you have the following piece of code:
 &amp;lt;%= if is_accounts_page(@conn) %&amp;gt; &amp;lt;div&amp;gt; # Account related content &amp;lt;/div&amp;gt; &amp;lt;% end %&amp;gt; To find out if the user is in the account route, you can compare the current path with the Account page route in LayoutView:</description>
-    </item>
-    
-    <item>
-      <title>Hello World!</title>
-      <link>https://blog.vitor.info/post/row-level-security-with-postgres-in-elixir-part-1/</link>
-      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
-      
-      <guid>https://blog.vitor.info/post/row-level-security-with-postgres-in-elixir-part-1/</guid>
-      <description>This is a dump from my recent experience implementing Row-level security in Elixir and Postgres for dynamically defined tenants.
-What’s row-level security? We need Row-level security (or just RLS) when we want certain users of the app to only see certain rows of the database. A good example is a user that, once logged in a banking app, can only see their transactions instead of the other users.
-How? The Ecto way There are a few ways of doing that like checking for a user_id (a.</description>
     </item>
     
   </channel>

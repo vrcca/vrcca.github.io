@@ -6,7 +6,16 @@
     <language>en-us</language>
     
     
-    <updated>Tue, 05 Mar 2019 16:31:19 UTC</updated>
+    <updated>Sat, 10 Feb 2024 12:39:02 &#43;0100</updated>
+    
+    <item>
+      <title>Posts</title>
+      <link>https://blog.vitor.info/post/</link>
+      <pubDate>Sat, 10 Feb 2024 12:39:02 &#43;0100</pubDate>
+      
+      <guid>https://blog.vitor.info/post/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>About</title>
@@ -23,15 +32,6 @@
       <pubDate>Tue, 05 Mar 2019 16:46:58 UTC</pubDate>
       
       <guid>https://blog.vitor.info/contact/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Posts</title>
-      <link>https://blog.vitor.info/post/</link>
-      <pubDate>Tue, 05 Mar 2019 16:31:19 UTC</pubDate>
-      
-      <guid>https://blog.vitor.info/post/</guid>
       <description></description>
     </item>
     
