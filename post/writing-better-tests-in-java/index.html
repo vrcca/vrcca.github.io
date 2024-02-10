@@ -57,87 +57,67 @@
       </div>
 
       <article class="post-content">
-      
-
-<p>Ever wondered why your tests break everytime you change production code? Are your tests difficult to read? This usually happens due to tests being too attached to the corresponding implementation. I will show a few techniques on how to writte better tests in Java.</p>
-
-<p>PS.: I will call &laquo;Production Code&raquo;, the code that you write to make your tests pass.</p>
-
+      <p>Ever wondered why your tests break everytime you change production code? Are your tests difficult to read? This usually happens due to tests being too attached to the corresponding implementation. I will show a few techniques on how to writte better tests in Java.</p>
+<p>PS.: I will call &ldquo;Production Code&rdquo;, the code that you write to make your tests pass.</p>
 <h2 id="changing-production-code-breaks-many-tests">Changing Production Code Breaks Many Tests</h2>
-
-<p>When your tests are too specific and bound to its implementation, you will notice that any changes to the production code such as <a href="https://refactoring.com/catalog/extractMethod.html" target="_blank">extracting a method</a>, <a href="https://refactoring.com/catalog/extractClass.html" target="_blank">extracting a class</a>, and others, breaks your unit tests. This is a sympton of <a href="https://blog.cleancoder.com/uncle-bob/2017/10/03/TestContravariance.html" target="_blank">fragile tests</a>. However, when you change behaviour or business rules, broken tests are expected. Nevertheless, your tests should not break when you change a variable from <code>Integer</code> to <code>Double</code>.</p>
-
+<p>When your tests are too specific and bound to its implementation, you will notice that any changes to the production code such as <a href="https://refactoring.com/catalog/extractMethod.html">extracting a method</a>, <a href="https://refactoring.com/catalog/extractClass.html">extracting a class</a>, and others, breaks your unit tests. This is a sympton of <a href="https://blog.cleancoder.com/uncle-bob/2017/10/03/TestContravariance.html">fragile tests</a>. However, when you change behaviour or business rules, broken tests are expected. Nevertheless, your tests should not break when you change a variable from <code>Integer</code> to <code>Double</code>.</p>
 <h3 id="builder-pattern-to-the-rescue">Builder Pattern To The Rescue</h3>
-
 <p>A way to avoid getting broken tests every time is to keep your unit tests as high level as possible, trying to keep it as disconnected as possible from its implementation.</p>
-
 <p>Here is an example of fragile test:</p>
-
-<pre><code class="language-java">public class AccountTest {
-    @Test
-    public void shouldCorrectlyDebitAValue() {
-        final Account account = new Account(1L, new BigDecimal(10));
-        final Account updatedAccount = account.debit(new BigDecimal(3));
-        assertThat(updatedAccount.getTotal(), is(new BigDecimal(7)));
-    }
-}
-</code></pre>
-
-<p>As you can see, there are many details in this code: an account has a <code>Long</code> value, to create it you use a constructor, passing its arguments in the given order. If you change any of these, your tests will break. However, you just want to document <em>Whenever an account debit an amount, it returns the account with updated total.</em></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccountTest</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">shouldCorrectlyDebitAValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">final</span> Account account <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Account<span style="color:#f92672">(</span>1L<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span>10<span style="color:#f92672">));</span>
+        <span style="color:#66d9ef">final</span> Account updatedAccount <span style="color:#f92672">=</span> account<span style="color:#f92672">.</span><span style="color:#a6e22e">debit</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span>3<span style="color:#f92672">));</span>
+        assertThat<span style="color:#f92672">(</span>updatedAccount<span style="color:#f92672">.</span><span style="color:#a6e22e">getTotal</span><span style="color:#f92672">(),</span> is<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span>7<span style="color:#f92672">)));</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>As you can see, there are many details in this code: an account has a <code>Long</code> value, to create it you use a constructor, passing its arguments in the given order. If you change any of these, your tests will break. However, you just want to document <em>Whenever an account debit an amount, it returns the account with updated total.</em></p>
 <p>You don&rsquo;t care about how an account is created, what are its internals. You just want an account with some cash in it, you want to subtract and then check that it correctly calculates the debit.</p>
-
-<p>Using the <a href="https://en.wikipedia.org/wiki/Builder_pattern#Java" target="_blank">Builder Pattern</a>, we can avoid all this:</p>
-
-<pre><code class="language-java">import static com.github.vrcca.domain.account.AccountTestBuilder.anAccount;
-public class AccountTest {
-    @Test
-    public void shouldCorrectlyDebitAValue() {
-        final Account account = anAccount().withTotal(10).build();
-        final Account updatedAccount = account.debit(new BigDecimal(3));
-        assertThat(updatedAccount.getTotal(), is(new BigDecimal(7)));
-    }
-}
-</code></pre>
-
-<p>As you can see, there is no detail on how an <code>Account</code> is created. Just pure high level data. You don&rsquo;t need to define parameters, no need to think about ordering, types. Just plain data.</p>
-
+<p>Using the <a href="https://en.wikipedia.org/wiki/Builder_pattern#Java">Builder Pattern</a>, we can avoid all this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import static</span> com.github.vrcca.domain.account.AccountTestBuilder.anAccount<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccountTest</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">shouldCorrectlyDebitAValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">final</span> Account account <span style="color:#f92672">=</span> anAccount<span style="color:#f92672">().</span><span style="color:#a6e22e">withTotal</span><span style="color:#f92672">(</span>10<span style="color:#f92672">).</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">final</span> Account updatedAccount <span style="color:#f92672">=</span> account<span style="color:#f92672">.</span><span style="color:#a6e22e">debit</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span>3<span style="color:#f92672">));</span>
+        assertThat<span style="color:#f92672">(</span>updatedAccount<span style="color:#f92672">.</span><span style="color:#a6e22e">getTotal</span><span style="color:#f92672">(),</span> is<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span>7<span style="color:#f92672">)));</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>As you can see, there is no detail on how an <code>Account</code> is created. Just pure high level data. You don&rsquo;t need to define parameters, no need to think about ordering, types. Just plain data.</p>
 <p>If we ever change the way an Account is created, we don&rsquo;t have to change all the tests. All we have to do is to fix our <code>AccountTestBuilder</code>. All tests should continue to pass.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccountTestBuilder</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Integer id<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> BigDecimal total<span style="color:#f92672">;</span>
 
-<pre><code class="language-java">public class AccountTestBuilder {
-    private final Integer id;
-    private final BigDecimal total;
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">AccountTestBuilder</span><span style="color:#f92672">(</span>Integer id<span style="color:#f92672">,</span> BigDecimal total<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">total</span> <span style="color:#f92672">=</span> total<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
 
-    public AccountTestBuilder(Integer id, BigDecimal total) {
-        this.id = id;
-        this.total = total;
-    }
+    <span style="color:#66d9ef">public</span> Account <span style="color:#a6e22e">build</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Account<span style="color:#f92672">(</span>id<span style="color:#f92672">,</span> total<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
-    public Account build() {
-        return new Account(id, total);
-    }
+    <span style="color:#75715e">// generates a valid, default account
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> AccountTestBuilder <span style="color:#a6e22e">anAccount</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> AccountTestBuilder<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> BigDecimal<span style="color:#f92672">.</span><span style="color:#a6e22e">TEN</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
-    // generates a valid, default account
-    public static AccountTestBuilder anAccount() {
-        return new AccountTestBuilder(1, BigDecimal.TEN);
-    }
+    <span style="color:#66d9ef">public</span> AccountTestBuilder <span style="color:#a6e22e">withId</span><span style="color:#f92672">(</span>Integer id<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> AccountTestBuilder<span style="color:#f92672">(</span>id<span style="color:#f92672">,</span> total<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
-    public AccountTestBuilder withId(Integer id) {
-        return new AccountTestBuilder(id, total);
-    }
+    <span style="color:#66d9ef">public</span> AccountTestBuilder <span style="color:#a6e22e">withTotal</span><span style="color:#f92672">(</span>BigDecimal total<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> AccountTestBuilder<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">,</span> total<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
-    public AccountTestBuilder withTotal(BigDecimal total) {
-        return new AccountTestBuilder(this.id, total);
-    }
-
-    // helper method
-    public AccountTestBuilder withTotal(Integer total) {
-        return withTotal(new BigDecimal(total));
-    }
-}
-</code></pre>
-
-<p>To sum up, keep your tests as abstract as possible. Make use of the builder pattern and create functions to help you on that.</p>
+    <span style="color:#75715e">// helper method
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> AccountTestBuilder <span style="color:#a6e22e">withTotal</span><span style="color:#f92672">(</span>Integer total<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> withTotal<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span>total<span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>To sum up, keep your tests as abstract as possible. Make use of the builder pattern and create functions to help you on that.</p>
 
       </article>
 

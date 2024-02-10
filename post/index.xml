@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Atomic Reference</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Posts on Atomic Reference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Mar 2019 16:31:19 +0000</lastBuildDate>
-    
-	<atom:link href="https://blog.vitor.info/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 05 Mar 2019 16:31:19 +0000</lastBuildDate><atom:link href="https://blog.vitor.info/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting The Current Page in Phoenix Framework</title>
       <link>https://blog.vitor.info/post/getting-the-current-page-in-phoenix/</link>
@@ -19,7 +15,7 @@
       <guid>https://blog.vitor.info/post/getting-the-current-page-in-phoenix/</guid>
       <description>When programming in Phoenix Framework, you sometimes need to code a decision point based on the current page. To do this, we can make use of Plug.Conn&amp;rsquo;s path_info field and compare it with Routes.
 Let&amp;rsquo;s say you have the following piece of code:
-&amp;lt;%= if is_accounts_page(@conn) %&amp;gt; &amp;lt;div&amp;gt; # Account related content &amp;lt;/div&amp;gt; &amp;lt;% end %&amp;gt;  To find out if the user is in the account route, you can compare the current path with the Account page route in LayoutView:</description>
+&amp;lt;%= if is_accounts_page(@conn) %&amp;gt; &amp;lt;div&amp;gt; # Account related content &amp;lt;/div&amp;gt; &amp;lt;% end %&amp;gt; To find out if the user is in the account route, you can compare the current path with the Account page route in LayoutView:</description>
     </item>
     
     <item>
@@ -29,7 +25,7 @@ Let&amp;rsquo;s say you have the following piece of code:
       
       <guid>https://blog.vitor.info/post/writing-better-tests-in-java/</guid>
       <description>Ever wondered why your tests break everytime you change production code? Are your tests difficult to read? This usually happens due to tests being too attached to the corresponding implementation. I will show a few techniques on how to writte better tests in Java.
-PS.: I will call &amp;laquo;Production Code&amp;raquo;, the code that you write to make your tests pass.
+PS.: I will call &amp;ldquo;Production Code&amp;rdquo;, the code that you write to make your tests pass.
 Changing Production Code Breaks Many Tests When your tests are too specific and bound to its implementation, you will notice that any changes to the production code such as extracting a method, extracting a class, and others, breaks your unit tests.</description>
     </item>
     

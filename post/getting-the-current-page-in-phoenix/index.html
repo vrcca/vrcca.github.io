@@ -57,32 +57,23 @@
       </div>
 
       <article class="post-content">
-      <p>When programming in <a href="https://phoenixframework.org" target="_blank">Phoenix Framework</a>, you sometimes need to code a decision point based on the current page. To do this, we can make use of <a href="https://hexdocs.pm/plug/Plug.Conn.html" target="_blank">Plug.Conn&rsquo;s</a> <code>path_info</code> field and compare it with <code>Routes</code>.</p>
-
+      <p>When programming in <a href="https://phoenixframework.org">Phoenix Framework</a>, you sometimes need to code a decision point based on the current page. To do this, we can make use of <a href="https://hexdocs.pm/plug/Plug.Conn.html">Plug.Conn&rsquo;s</a> <code>path_info</code> field and compare it with <code>Routes</code>.</p>
 <p>Let&rsquo;s say you have the following piece of code:</p>
-
-<pre><code class="language-elixir">&lt;%= if is_accounts_page(@conn) %&gt;
-    &lt;div&gt;
-        # Account related content
-    &lt;/div&gt;
-&lt;% end %&gt;
-</code></pre>
-
-<p>To find out if the user is in the account route, you can compare the current path with the Account page route in <code>LayoutView</code>:</p>
-
-<pre><code class="language-elixir">def is_accounts_page(conn = %Plug.Conn{path_info: path_info}) do
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir"><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> is_accounts_page(<span style="color:#a6e22e">@conn</span>) <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span>div<span style="color:#f92672">&gt;</span>
+        <span style="color:#75715e"># Account related content</span>
+    <span style="color:#f92672">&lt;/</span>div<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#66d9ef">end</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span>
+</code></pre></div><p>To find out if the user is in the account route, you can compare the current path with the Account page route in <code>LayoutView</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir"><span style="color:#66d9ef">def</span> is_accounts_page(conn <span style="color:#f92672">=</span> %<span style="color:#a6e22e">Plug.Conn</span>{<span style="color:#e6db74">path_info</span>: path_info}) <span style="color:#66d9ef">do</span>
   path_info
-  |&gt; join_path()
-  |&gt; String.equivalent?(Routes.accounts_path(conn, :index))
-end
+  <span style="color:#f92672">|&gt;</span> join_path()
+  <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>equivalent?(<span style="color:#a6e22e">Routes</span><span style="color:#f92672">.</span>accounts_path(conn, <span style="color:#e6db74">:index</span>))
+<span style="color:#66d9ef">end</span>
 
-defp join_path(path_info), do: &quot;/&quot; &lt;&gt; Enum.join(path_info, &quot;/&quot;)
-</code></pre>
-
-<p>As we can see, in the first line we extract the <code>path_info</code> from <code>conn</code>. Then we join all path parts into a single string. Finally, we compare the current path with the <code>Routes.accounts_path</code>.</p>
-
+<span style="color:#66d9ef">defp</span> join_path(path_info), <span style="color:#e6db74">do</span>: <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#a6e22e">Enum</span><span style="color:#f92672">.</span>join(path_info, <span style="color:#e6db74">&#34;/&#34;</span>)
+</code></pre></div><p>As we can see, in the first line we extract the <code>path_info</code> from <code>conn</code>. Then we join all path parts into a single string. Finally, we compare the current path with the <code>Routes.accounts_path</code>.</p>
 <p>You can go even further and make this function work for any page by passing the route path as argument.</p>
-
 <p>I hope it helps. Please, let me know what you thought about this approach.</p>
 
       </article>

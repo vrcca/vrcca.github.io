@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Atomic Reference</title>
@@ -6,22 +6,9 @@
     <description>Recent content in Tags on Atomic Reference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Oct 2018 15:21:02 +0000</lastBuildDate>
-    
-	<atom:link href="https://blog.vitor.info/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 05 Mar 2019 16:31:19 +0000</lastBuildDate><atom:link href="https://blog.vitor.info/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Blog</title>
-      <link>https://blog.vitor.info/tags/blog/</link>
-      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
-      
-      <guid>https://blog.vitor.info/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Elixir</title>
+      <title>elixir</title>
       <link>https://blog.vitor.info/tags/elixir/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
       
@@ -30,34 +17,7 @@
     </item>
     
     <item>
-      <title>Gitlab</title>
-      <link>https://blog.vitor.info/tags/gitlab/</link>
-      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
-      
-      <guid>https://blog.vitor.info/tags/gitlab/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>https://blog.vitor.info/tags/hugo/</link>
-      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
-      
-      <guid>https://blog.vitor.info/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>https://blog.vitor.info/tags/java/</link>
-      <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
-      
-      <guid>https://blog.vitor.info/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Phoenix</title>
+      <title>phoenix</title>
       <link>https://blog.vitor.info/tags/phoenix/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
       
@@ -66,7 +26,7 @@
     </item>
     
     <item>
-      <title>Phoenixframework</title>
+      <title>phoenixframework</title>
       <link>https://blog.vitor.info/tags/phoenixframework/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
       
@@ -75,16 +35,16 @@
     </item>
     
     <item>
-      <title>Postgres</title>
-      <link>https://blog.vitor.info/tags/postgres/</link>
-      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
+      <title>java</title>
+      <link>https://blog.vitor.info/tags/java/</link>
+      <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
       
-      <guid>https://blog.vitor.info/tags/postgres/</guid>
+      <guid>https://blog.vitor.info/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Tdd</title>
+      <title>tdd</title>
       <link>https://blog.vitor.info/tags/tdd/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
       
@@ -93,11 +53,47 @@
     </item>
     
     <item>
-      <title>Test</title>
+      <title>test</title>
       <link>https://blog.vitor.info/tags/test/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
       
       <guid>https://blog.vitor.info/tags/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://blog.vitor.info/tags/blog/</link>
+      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
+      
+      <guid>https://blog.vitor.info/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gitlab</title>
+      <link>https://blog.vitor.info/tags/gitlab/</link>
+      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
+      
+      <guid>https://blog.vitor.info/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://blog.vitor.info/tags/hugo/</link>
+      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
+      
+      <guid>https://blog.vitor.info/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgres</title>
+      <link>https://blog.vitor.info/tags/postgres/</link>
+      <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
+      
+      <guid>https://blog.vitor.info/tags/postgres/</guid>
       <description></description>
     </item>
     

@@ -57,364 +57,251 @@
       </div>
 
       <article class="post-content">
-      
-
-<p>This is a dump from my recent experience implementing Row-level security in Elixir and Postgres for dynamically defined tenants.</p>
-
-<h1 id="what-s-row-level-security">What’s row-level security?</h1>
-
+      <p>This is a dump from my recent experience implementing Row-level security in Elixir and Postgres for dynamically defined tenants.</p>
+<h1 id="whats-row-level-security">What’s row-level security?</h1>
 <p>We need Row-level security (or just RLS) when we want certain users of the app to only see certain rows of the database. A good example is a user that, once logged in a banking app, can only see their transactions instead of the other users.</p>
-
 <h1 id="how">How?</h1>
-
 <h2 id="the-ecto-way">The Ecto way</h2>
-
 <p>There are a few ways of doing that like checking for a user_id (a.k.a tenant identifier, or tenant id) in the query or before any changes to a row, you check if that row belongs to that user. However that requires developers to always remember that any database access has this check or query filter, which is prone to human error.</p>
-
-<pre><code class="language-sql">Repo.all(from(transaction in Transaction,
-			  where: transaction.user_id == current_user.id))
-</code></pre>
-
-<p>If we forget the <code>where</code> above, we&rsquo;ll let any user see transactions from all other users! Now imagine doing this for every DB operation. For updating and deleting data you also need to filter it:</p>
-
-<pre><code class="language-elixir">Repo.update_all(from(transaction in Transaction,
-			  where: transaction.user_id == current_user.id),
-			  set: [status: :active])
-</code></pre>
-
-<p>Or if you need to update one transaction:</p>
-
-<pre><code class="language-elixir">transaction = Repo.get(Transaction, 123) # or get_by(id: 123, user_id: ...)
-if transaction.user_id == current_user.id do
-   # update!
-else
-  {:error, :forbidden}
-end
-</code></pre>
-
-<p>This pattern repeats all over the place.</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">Repo.<span style="color:#66d9ef">all</span>(<span style="color:#66d9ef">from</span>(<span style="color:#66d9ef">transaction</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">Transaction</span>,
+			  <span style="color:#66d9ef">where</span>: <span style="color:#66d9ef">transaction</span>.user_id <span style="color:#f92672">==</span> <span style="color:#66d9ef">current_user</span>.id))
+</code></pre></div><p>If we forget the <code>where</code> above, we&rsquo;ll let any user see transactions from all other users! Now imagine doing this for every DB operation. For updating and deleting data you also need to filter it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir"><span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>update_all(from(transaction <span style="color:#f92672">in</span> <span style="color:#a6e22e">Transaction</span>,
+			  <span style="color:#e6db74">where</span>: transaction<span style="color:#f92672">.</span>user_id <span style="color:#f92672">==</span> current_user<span style="color:#f92672">.</span>id),
+			  <span style="color:#e6db74">set</span>: [<span style="color:#e6db74">status</span>: <span style="color:#e6db74">:active</span>])
+</code></pre></div><p>Or if you need to update one transaction:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">transaction <span style="color:#f92672">=</span> <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>get(<span style="color:#a6e22e">Transaction</span>, <span style="color:#ae81ff">123</span>) <span style="color:#75715e"># or get_by(id: 123, user_id: ...)</span>
+<span style="color:#66d9ef">if</span> transaction<span style="color:#f92672">.</span>user_id <span style="color:#f92672">==</span> current_user<span style="color:#f92672">.</span>id <span style="color:#66d9ef">do</span>
+   <span style="color:#75715e"># update!</span>
+<span style="color:#66d9ef">else</span>
+  {<span style="color:#e6db74">:error</span>, <span style="color:#e6db74">:forbidden</span>}
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>This pattern repeats all over the place.</p>
 <h2 id="the-postgres-way">The Postgres way</h2>
-
 <p>Instead of manually typing filters for every operation, we can create policies and let Postgres do that work for us. So we can run only this:</p>
-
-<pre><code class="language-elixir">Repo.all(from(transaction in Transaction))
-</code></pre>
-
-<p>Postgres took care of the rest!</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir"><span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>all(from(transaction <span style="color:#f92672">in</span> <span style="color:#a6e22e">Transaction</span>))
+</code></pre></div><p>Postgres took care of the rest!</p>
 <h1 id="the-example">The example</h1>
-
-<p>I&rsquo;d like to explain how to do the Postgres way by changing an existing app, so let’s add row-level security to Chris McCord’s <a href="https://github.com/chrismccord/todo_trek/" target="_blank">TodoTrek</a>. It currently relies on the tenant_id checks, but we’ll make it work with Postgres RLS instead!</p>
-
+<p>I&rsquo;d like to explain how to do the Postgres way by changing an existing app, so let’s add row-level security to Chris McCord’s <a href="https://github.com/chrismccord/todo_trek/">TodoTrek</a>. It currently relies on the tenant_id checks, but we’ll make it work with Postgres RLS instead!</p>
 <h3 id="running-the-app">Running the app</h3>
-
 <p><strong>Let&rsquo;s start by cloning the repo</strong>:
 <code>git clone git@github.com:chrismccord/todo_trek.git</code></p>
-
 <p>If any of the examples below fails, the latest commit for me was <code>4d7357428993ce46625e1d39cb0fda9c0a832fc6</code>.</p>
-
 <p>The versions I used:</p>
-
-<pre><code class="language-sh">$ mise current
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ mise current
 erlang 26.2.1
 elixir 1.16.0-otp-26
-</code></pre>
-
-<p><strong>Start Postgres</strong>
+</code></pre></div><p><strong>Start Postgres</strong>
 I am going to use Docker in this example, but you can use it however you want, as long as you set a superuser credential in the <code>config/dev.exs</code> because I will be assuming so:
 <code>docker run --name todotrek -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres</code></p>
-
 <blockquote>
 <p>TodoTrek locally runs with a Postgres user that has superuser powers, <code>postgres</code>, I’ll keep it like that because we are retrofitting an app, which in my experience was the most common scenario I found since startups wouldn’t bother about RLS before getting enough traction and real moneys.</p>
 </blockquote>
-
 <p><strong>Pull dependencies &amp; build</strong>
 Run:
 <code>mix setup</code></p>
-
 <p>If we try to run <code>mix test</code>, we&rsquo;ll see about 17 errors. I&rsquo;ll just accept fate and rely on manual testing.</p>
-
 <p><strong>Start the app</strong>
-Run <code>mix phx.server</code>, open the browser at <a href="http://localhost:4000" target="_blank">http://localhost:4000</a> and get used to it! To log in, just type &laquo;password password&raquo; in the password field.</p>
-
-<p>Now create a new user so that we can test it manually. I created a new one with the same password above, but the email anotheruser@example.com. Also create some Todos for it.</p>
-
+Run <code>mix phx.server</code>, open the browser at http://localhost:4000 and get used to it! To log in, just type &ldquo;password password&rdquo; in the password field.</p>
+<p>Now create a new user so that we can test it manually. I created a new one with the same password above, but the email <a href="mailto:anotheruser@example.com">anotheruser@example.com</a>. Also create some Todos for it.</p>
 <p>![[_resources/new_todo_list.png]]</p>
-
 <h1 id="about-postgres-policies">About Postgres Policies</h1>
-
-<p>I won&rsquo;t go into detail about Policies because the <a href="https://www.postgresql.org/docs/16/ddl-rowsecurity.html" target="_blank">Postgres docs</a> do a much better job explaining it, but, in short, this is the way you tell Postgres how to filter rows.</p>
-
+<p>I won&rsquo;t go into detail about Policies because the <a href="https://www.postgresql.org/docs/16/ddl-rowsecurity.html">Postgres docs</a> do a much better job explaining it, but, in short, this is the way you tell Postgres how to filter rows.</p>
 <h3 id="a-simple-example-from-the-docs">A simple example from the docs</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- first enable the RLS for that table
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> users ENABLE <span style="color:#66d9ef">ROW</span> <span style="color:#66d9ef">LEVEL</span> <span style="color:#66d9ef">SECURITY</span>;
 
-<pre><code class="language-sql">-- first enable the RLS for that table
-ALTER TABLE users ENABLE ROW LEVEL SECURITY;
-
--- create the policy
-CREATE POLICY user_policy ON users
-    USING (user_name = current_user);
-</code></pre>
-
-<p>After running this, from now on, any queries to the <code>users</code> table should add the user_name filter, and this filter can be any SQL query that returns a boolean. Looks pretty simple! But there a few catches I couldn’t figure out yet. Maybe there is a really obvious way to solve these, but here are a few things that got me:</p>
-
+<span style="color:#75715e">-- create the policy
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> POLICY user_policy <span style="color:#66d9ef">ON</span> users
+    <span style="color:#66d9ef">USING</span> (user_name <span style="color:#f92672">=</span> <span style="color:#66d9ef">current_user</span>);
+</code></pre></div><p>After running this, from now on, any queries to the <code>users</code> table should add the user_name filter, and this filter can be any SQL query that returns a boolean. Looks pretty simple! But there a few catches I couldn’t figure out yet. Maybe there is a really obvious way to solve these, but here are a few things that got me:</p>
 <h3 id="catch-1-dynamic-tenant-id">Catch 1: Dynamic Tenant ID</h3>
-
-<p>I have no idea how to switch the <code>current_user</code> above dynamically. From <a href="https://blog.devgenius.io/postgresql-row-level-security-and-more-2c8c108f9856" target="_blank">the examples</a> I found, they usually run <code>CREATE USER #{tenant}</code> for each tenant on sign up, but I couldn&rsquo;t find a simple way to switch the current_user in Ecto. So, instead I had to rely on <a href="https://www.postgresql.org/docs/current/sql-set.html" target="_blank">setting local configuration parameters</a> and fetching it in the policies with the <a href="https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SET" target="_blank">current_setting</a> function and it worked good enough.</p>
-
+<p>I have no idea how to switch the <code>current_user</code> above dynamically. From <a href="https://blog.devgenius.io/postgresql-row-level-security-and-more-2c8c108f9856">the examples</a> I found, they usually run <code>CREATE USER #{tenant}</code> for each tenant on sign up, but I couldn&rsquo;t find a simple way to switch the current_user in Ecto. So, instead I had to rely on <a href="https://www.postgresql.org/docs/current/sql-set.html">setting local configuration parameters</a> and fetching it in the policies with the <a href="https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SET">current_setting</a> function and it worked good enough.</p>
 <p>The example above would be translated to look like this:</p>
-
-<pre><code class="language-sql">CREATE POLICY user_policy ON users
-    USING (user_name = current_setting('app.current_user_id'));
-</code></pre>
-
-<h3 id="catch-2-session-and-local">Catch 2: SESSION and LOCAL</h3>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> POLICY user_policy <span style="color:#66d9ef">ON</span> users
+    <span style="color:#66d9ef">USING</span> (user_name <span style="color:#f92672">=</span> current_setting(<span style="color:#e6db74">&#39;app.current_user_id&#39;</span>));
+</code></pre></div><h3 id="catch-2-session-and-local">Catch 2: SESSION and LOCAL</h3>
 <p>Configurations and roles can be set at session and local level. We need to set this every time the code accesses the database, and we cannot set it at the session level or database level because otherwise we would have concurrency problems, resulting in users seeing data from other users. So this setting needs to be set within a Postgres transaction:</p>
-
-<pre><code class="language-sql">BEGIN;
-  SET app.current_user_id = 123;
-  SELECT * FROM users;
-END;
-</code></pre>
-
-<h3 id="catch-3-bypassing-rls">Catch 3: Bypassing RLS</h3>
-
-<p>While learning about all this, I couldn&rsquo;t make this work! I created the policies, I set the local parameter, but it wouldn&rsquo;t filter the query results. I lost so many hours because I didn&rsquo;t know that <a href="https://www.postgresql.org/docs/16/ddl-rowsecurity.html" target="_blank">superusers and table owners completely bypass RLS</a>:</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">BEGIN</span>;
+  <span style="color:#66d9ef">SET</span> app.current_user_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>;
+  <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> users;
+<span style="color:#66d9ef">END</span>;
+</code></pre></div><h3 id="catch-3-bypassing-rls">Catch 3: Bypassing RLS</h3>
+<p>While learning about all this, I couldn&rsquo;t make this work! I created the policies, I set the local parameter, but it wouldn&rsquo;t filter the query results. I lost so many hours because I didn&rsquo;t know that <a href="https://www.postgresql.org/docs/16/ddl-rowsecurity.html">superusers and table owners completely bypass RLS</a>:</p>
 <blockquote>
-<p>Superusers and roles with the <code>BYPASSRLS</code> attribute always bypass the row security system when accessing a table. Table owners normally bypass row security as well, though a table owner can choose to be subject to row security with <a href="https://www.postgresql.org/docs/current/sql-altertable.html" title="ALTER TABLE" target="_blank">ALTER TABLE &hellip; FORCE ROW LEVEL SECURITY</a>.</p>
+<p>Superusers and roles with the <code>BYPASSRLS</code> attribute always bypass the row security system when accessing a table. Table owners normally bypass row security as well, though a table owner can choose to be subject to row security with <a href="https://www.postgresql.org/docs/current/sql-altertable.html" title="ALTER TABLE">ALTER TABLE &hellip; FORCE ROW LEVEL SECURITY</a>.</p>
 </blockquote>
+<p>To fix this, there are some options, but in my case (and for the example of this blog), I decided to keep the <code>postgres</code> Superuser and create a new <a href="https://www.postgresql.org/docs/current/sql-createrole.html">DB user</a> which I could switch to in runtime before running the DB operation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- first create a new user/role that does not bypassrls:
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">USER</span> restricted_user NOBYPASSRLS;
 
-<p>To fix this, there are some options, but in my case (and for the example of this blog), I decided to keep the <code>postgres</code> Superuser and create a new <a href="https://www.postgresql.org/docs/current/sql-createrole.html" target="_blank">DB user</a> which I could switch to in runtime before running the DB operation:</p>
-
-<pre><code class="language-sql">-- first create a new user/role that does not bypassrls:
-CREATE USER restricted_user NOBYPASSRLS;
-
--- then before queries use it:
-SET LOCAL ROLE restricted_user;
-</code></pre>
-
-<p>With this I was able to keep connecting with superuser, and then the query filtered correctly!</p>
-
+<span style="color:#75715e">-- then before queries use it:
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">LOCAL</span> <span style="color:#66d9ef">ROLE</span> restricted_user;
+</code></pre></div><p>With this I was able to keep connecting with superuser, and then the query filtered correctly!</p>
 <h1 id="the-migration-plan">The Migration plan</h1>
-
 <p>Given the above, we&rsquo;ll need some DB migrations like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">USER</span> restricted_user NOBYPASSRLS;
+<span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> users ENABLE <span style="color:#66d9ef">ROW</span> <span style="color:#66d9ef">LEVEL</span> <span style="color:#66d9ef">SECURITY</span>;
 
-<pre><code class="language-sql">CREATE USER restricted_user NOBYPASSRLS;
-ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+<span style="color:#75715e">-- I didn&#39;t mention, but the new user needs access to the table:
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">GRANT</span> <span style="color:#66d9ef">ALL</span> <span style="color:#66d9ef">ON</span> users <span style="color:#66d9ef">TO</span> restricted_user;
 
--- I didn't mention, but the new user needs access to the table:
-GRANT ALL ON users TO restricted_user;
-
-CREATE POLICY user_policy ON users
-    TO restricted_user -- I only set it for this user
-    USING (user_name = current_setting('app.current_user_id'));
-</code></pre>
-
-<p>Then our code will run all queries like this:</p>
-
-<pre><code class="language-sql">BEGIN;
-  SET LOCAL ROLE restricted_user;
-  SET app.current_user_id = 123;
-  SELECT * FROM users;
-END;
-</code></pre>
-
-<h1 id="breaking-the-app">Breaking the app</h1>
-
+<span style="color:#66d9ef">CREATE</span> POLICY user_policy <span style="color:#66d9ef">ON</span> users
+    <span style="color:#66d9ef">TO</span> restricted_user <span style="color:#75715e">-- I only set it for this user
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">USING</span> (user_name <span style="color:#f92672">=</span> current_setting(<span style="color:#e6db74">&#39;app.current_user_id&#39;</span>));
+</code></pre></div><p>Then our code will run all queries like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">BEGIN</span>;
+  <span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">LOCAL</span> <span style="color:#66d9ef">ROLE</span> restricted_user;
+  <span style="color:#66d9ef">SET</span> app.current_user_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>;
+  <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> users;
+<span style="color:#66d9ef">END</span>;
+</code></pre></div><h1 id="breaking-the-app">Breaking the app</h1>
 <p>Let&rsquo;s break the app. Go to <code>lib/todo_trek/todos.ex</code>, find the <code>active_lists/2</code> function and delete all filters using the <code>scope</code> variable. We don&rsquo;t want to bother about this filter at all! Like this:</p>
-
-<pre><code class="language-elixir">  def active_lists(%Scope{} = scope, limit) do
-    from(l in List,
-#     where: l.user_id == ^scope.current_user.id,
-      limit: ^limit,
-      order_by: [asc: :position]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">  <span style="color:#66d9ef">def</span> active_lists(%<span style="color:#a6e22e">Scope</span>{} <span style="color:#f92672">=</span> scope, limit) <span style="color:#66d9ef">do</span>
+    from(l <span style="color:#f92672">in</span> <span style="color:#a6e22e">List</span>,
+<span style="color:#75715e">#     where: l.user_id == ^scope.current_user.id,</span>
+      <span style="color:#e6db74">limit</span>: <span style="color:#f92672">^</span>limit,
+      <span style="color:#e6db74">order_by</span>: [<span style="color:#e6db74">asc</span>: <span style="color:#e6db74">:position</span>]
     )
-    |&gt; Repo.all()
-    |&gt; Repo.preload(
-      todos:
-        from(t in Todo,
-#         where: t.user_id == ^scope.current_user.id,
-          limit: @max_todos,
-          order_by: [asc: t.position]
+    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>all()
+    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>preload(
+      <span style="color:#e6db74">todos</span>:
+        from(t <span style="color:#f92672">in</span> <span style="color:#a6e22e">Todo</span>,
+<span style="color:#75715e">#         where: t.user_id == ^scope.current_user.id,</span>
+          <span style="color:#e6db74">limit</span>: <span style="color:#a6e22e">@max_todos</span>,
+          <span style="color:#e6db74">order_by</span>: [<span style="color:#e6db74">asc</span>: t<span style="color:#f92672">.</span>position]
         )
     )
-  end
-</code></pre>
-
-<p>If you refresh the browser, you should be able to see the lists from all users. Kaboom!
+  <span style="color:#66d9ef">end</span>
+</code></pre></div><p>If you refresh the browser, you should be able to see the lists from all users. Kaboom!
 ![[_resources/app_with_broken_rls.png]]</p>
-
 <p>Not <em>my</em> list.</p>
-
 <h1 id="fixing-the-app-with-postgres-rls">Fixing the app with Postgres RLS</h1>
-
 <p>Alright! Let&rsquo;s create the migrations I mentioned, then fix this with RLS!</p>
-
 <h3 id="create-the-rls-user">Create the RLS user</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mix ecto.gen.migration create_restricted_user
+</code></pre></div><p>Open the generated file, and let&rsquo;s just follow the example from the Migration plan:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir"><span style="color:#75715e"># priv/repo/migrations/20240120163737_create_restricted_user.exs</span>
+<span style="color:#66d9ef">defmodule</span> <span style="color:#a6e22e">TodoTrek.Repo.Migrations.CreateRestrictedUser</span> <span style="color:#66d9ef">do</span>
+  <span style="color:#f92672">use</span> <span style="color:#a6e22e">Ecto.Migration</span>
 
-<pre><code class="language-bash">mix ecto.gen.migration create_restricted_user
-</code></pre>
+  <span style="color:#66d9ef">def</span> up <span style="color:#66d9ef">do</span>
+    execute(<span style="color:#e6db74">&#34;CREATE USER restricted_user NOBYPASSRLS&#34;</span>)
 
-<p>Open the generated file, and let&rsquo;s just follow the example from the Migration plan:</p>
+	<span style="color:#75715e"># DO NOT RUN THIS IN PRODUCTION! GRANT ONLY WHAT IS NEEDED!</span>
+    <span style="color:#75715e"># grants all powers on all tables</span>
+    execute(<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    GRANT ALL
+</span><span style="color:#e6db74">    ON ALL TABLES
+</span><span style="color:#e6db74">    IN SCHEMA public
+</span><span style="color:#e6db74">    TO restricted_user;
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>)
 
-<pre><code class="language-elixir"># priv/repo/migrations/20240120163737_create_restricted_user.exs
-defmodule TodoTrek.Repo.Migrations.CreateRestrictedUser do
-  use Ecto.Migration
+	<span style="color:#75715e"># DO NOT RUN THIS IN PRODUCTION!</span>
+    <span style="color:#75715e"># This grants all on future tables</span>
+    execute(<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    ALTER DEFAULT PRIVILEGES IN SCHEMA public
+</span><span style="color:#e6db74">    GRANT ALL
+</span><span style="color:#e6db74">    ON TABLES
+</span><span style="color:#e6db74">    TO restricted_user;
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>)
+  <span style="color:#66d9ef">end</span>
 
-  def up do
-    execute(&quot;CREATE USER restricted_user NOBYPASSRLS&quot;)
-
-	# DO NOT RUN THIS IN PRODUCTION! GRANT ONLY WHAT IS NEEDED!
-    # grants all powers on all tables
-    execute(&quot;&quot;&quot;
-    GRANT ALL
-    ON ALL TABLES
-    IN SCHEMA public
-    TO restricted_user;
-    &quot;&quot;&quot;)
-
-	# DO NOT RUN THIS IN PRODUCTION!
-    # This grants all on future tables
-    execute(&quot;&quot;&quot;
-    ALTER DEFAULT PRIVILEGES IN SCHEMA public
-    GRANT ALL
-    ON TABLES
-    TO restricted_user;
-    &quot;&quot;&quot;)
-  end
-
-  # As an exercise, implement the `down` function
-  def down do
-  end
-end
-</code></pre>
-
-<blockquote>
+  <span style="color:#75715e"># As an exercise, implement the `down` function</span>
+  <span style="color:#66d9ef">def</span> down <span style="color:#66d9ef">do</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><blockquote>
 <p>[!WARNING] &gt; <strong>DO NOT USE THIS IN PRODUCTION!</strong></p>
-
-<p>Reach out to your DB expert about the <a href="https://www.postgresql.org/docs/16/sql-grant.html" target="_blank">grants</a> and <a href="https://www.postgresql.org/docs/16/sql-alterdefaultprivileges.html" target="_blank">default privileges</a>! Do not use this blindly in production! Privilege levels is out of scope of this post, so for simplicity I am granting all on everything.</p>
+<p>Reach out to your DB expert about the <a href="https://www.postgresql.org/docs/16/sql-grant.html">grants</a> and <a href="https://www.postgresql.org/docs/16/sql-alterdefaultprivileges.html">default privileges</a>! Do not use this blindly in production! Privilege levels is out of scope of this post, so for simplicity I am granting all on everything.</p>
 </blockquote>
-
 <h3 id="create-the-policy">Create the Policy</h3>
-
 <p>I&rsquo;ll do it only for the lists table and won&rsquo;t bother about the todos table, but <strong>we should</strong>! Feel free to do it as an exercise.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mix ecto.gen.migration create_rls_policy_for_lists
+</code></pre></div><p>Open the generated file, and let&rsquo;s just follow the example from the Migration plan again:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir"><span style="color:#75715e"># priv/repo/migrations/20240120164315_create_rls_policy_for_lists.exs</span>
+<span style="color:#66d9ef">defmodule</span> <span style="color:#a6e22e">TodoTrek.Repo.Migrations.CreateRlsPolicyForLists</span> <span style="color:#66d9ef">do</span>
+  <span style="color:#f92672">use</span> <span style="color:#a6e22e">Ecto.Migration</span>
 
-<pre><code class="language-bash">mix ecto.gen.migration create_rls_policy_for_lists
-</code></pre>
+  <span style="color:#66d9ef">def</span> up <span style="color:#66d9ef">do</span>
+    execute(<span style="color:#e6db74">&#34;ALTER TABLE lists ENABLE ROW LEVEL SECURITY;&#34;</span>)
 
-<p>Open the generated file, and let&rsquo;s just follow the example from the Migration plan again:</p>
+    execute(<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    CREATE POLICY list_policy ON lists
+</span><span style="color:#e6db74">    TO restricted_user
+</span><span style="color:#e6db74">    USING (user_id = current_setting(&#39;app.current_user_id&#39;)::bigint);
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>)
+  <span style="color:#66d9ef">end</span>
 
-<pre><code class="language-elixir"># priv/repo/migrations/20240120164315_create_rls_policy_for_lists.exs
-defmodule TodoTrek.Repo.Migrations.CreateRlsPolicyForLists do
-  use Ecto.Migration
-
-  def up do
-    execute(&quot;ALTER TABLE lists ENABLE ROW LEVEL SECURITY;&quot;)
-
-    execute(&quot;&quot;&quot;
-    CREATE POLICY list_policy ON lists
-    TO restricted_user
-    USING (user_id = current_setting('app.current_user_id')::bigint);
-    &quot;&quot;&quot;)
-  end
-
-  def down do
-    # exercise
-  end
-end
-</code></pre>
-
-<p>See that <code>::bigint</code> in there? That&rsquo;s necessary because the <code>user_id</code> is an integer, but the <code>current_setting</code> returns <code>text</code>. It needs conversion!</p>
-
+  <span style="color:#66d9ef">def</span> down <span style="color:#66d9ef">do</span>
+    <span style="color:#75715e"># exercise</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>See that <code>::bigint</code> in there? That&rsquo;s necessary because the <code>user_id</code> is an integer, but the <code>current_setting</code> returns <code>text</code>. It needs conversion!</p>
 <h3 id="rls-in-action">RLS in action!</h3>
-
 <p>Run <code>mix ecto.migrate</code>, and let&rsquo;s see it in action in IEX!</p>
-
-<pre><code>iex -S mix phx.server
-</code></pre>
-
-<p><strong>Without RLS</strong>
+<pre tabindex="0"><code>iex -S mix phx.server
+</code></pre><p><strong>Without RLS</strong>
 Assuming that you created more account with Todos, running this should return all lists from all users:</p>
-
-<pre><code class="language-elixir">iex&gt; lists = TodoTrek.Todos.active_lists(%TodoTrek.Scope{}, 10)
-iex&gt; Enum.map(lists, &amp; &amp;1.user_id) |&gt; Enum.uniq()
-[1, 2]
-</code></pre>
-
-<p>Oops! We need to set the <code>app.current_user_id</code> and <code>restricted_user</code>!</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">iex<span style="color:#f92672">&gt;</span> lists <span style="color:#f92672">=</span> <span style="color:#a6e22e">TodoTrek.Todos</span><span style="color:#f92672">.</span>active_lists(%<span style="color:#a6e22e">TodoTrek.Scope</span>{}, <span style="color:#ae81ff">10</span>)
+iex<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">Enum</span><span style="color:#f92672">.</span>map(lists, <span style="color:#f92672">&amp;</span> &amp;1<span style="color:#f92672">.</span>user_id) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Enum</span><span style="color:#f92672">.</span>uniq()
+[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>]
+</code></pre></div><p>Oops! We need to set the <code>app.current_user_id</code> and <code>restricted_user</code>!</p>
 <p><strong>With RLS</strong></p>
-
 <p>It doesn&rsquo;t look nice, but stay with me:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">iex<span style="color:#f92672">&gt;</span> <span style="color:#f92672">alias</span> <span style="color:#a6e22e">TodoTrek.Repo</span>
 
-<pre><code class="language-elixir">iex&gt; alias TodoTrek.Repo
-
-iex&gt; {:ok, lists} = Repo.transaction(fn -&gt;
-iex&gt;   Repo.query!(&quot;SET LOCAL ROLE restricted_user;&quot;)
-iex&gt;   Repo.query!(&quot;SET app.current_user_id = '1';&quot;)
-iex&gt;   TodoTrek.Todos.active_lists(%TodoTrek.Scope{}, 20)
-iex&gt; end)
+iex<span style="color:#f92672">&gt;</span> {<span style="color:#e6db74">:ok</span>, lists} <span style="color:#f92672">=</span> <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>transaction(<span style="color:#66d9ef">fn</span> <span style="color:#f92672">-&gt;</span>
+iex<span style="color:#f92672">&gt;</span>   <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>query!(<span style="color:#e6db74">&#34;SET LOCAL ROLE restricted_user;&#34;</span>)
+iex<span style="color:#f92672">&gt;</span>   <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>query!(<span style="color:#e6db74">&#34;SET app.current_user_id = &#39;1&#39;;&#34;</span>)
+iex<span style="color:#f92672">&gt;</span>   <span style="color:#a6e22e">TodoTrek.Todos</span><span style="color:#f92672">.</span>active_lists(%<span style="color:#a6e22e">TodoTrek.Scope</span>{}, <span style="color:#ae81ff">20</span>)
+iex<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">end</span>)
 ...
-iex&gt; Enum.map(lists, &amp; &amp;1.user_id) |&gt; Enum.uniq()
-[1]
-</code></pre>
-
-<p>It works!</p>
-
+iex<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">Enum</span><span style="color:#f92672">.</span>map(lists, <span style="color:#f92672">&amp;</span> &amp;1<span style="color:#f92672">.</span>user_id) <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Enum</span><span style="color:#f92672">.</span>uniq()
+[<span style="color:#ae81ff">1</span>]
+</code></pre></div><p>It works!</p>
 <p>Try again without the <code>SET LOCAL ROLE restricted_user</code> and see what happens. It should return all anyway because it runs the query with the superuser which bypasses RLS.</p>
-
 <h2 id="replace-the-function">Replace the function</h2>
-
 <p>Let&rsquo;s move all this to <code>active_lists/2</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">  <span style="color:#66d9ef">def</span> active_lists(%<span style="color:#a6e22e">Scope</span>{} <span style="color:#f92672">=</span> scope, limit) <span style="color:#66d9ef">do</span>
+    {<span style="color:#e6db74">:ok</span>, lists} <span style="color:#f92672">=</span>
+      <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>transaction(<span style="color:#66d9ef">fn</span> <span style="color:#f92672">-&gt;</span>
+        <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>query!(<span style="color:#e6db74">&#34;SET LOCAL ROLE restricted_user;&#34;</span>)
+        <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>query!(<span style="color:#e6db74">&#34;SET app.current_user_id = &#39;</span><span style="color:#e6db74">#{</span>scope<span style="color:#f92672">.</span>current_user<span style="color:#f92672">.</span>id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;;&#34;</span>)
 
-<pre><code class="language-elixir">  def active_lists(%Scope{} = scope, limit) do
-    {:ok, lists} =
-      Repo.transaction(fn -&gt;
-        Repo.query!(&quot;SET LOCAL ROLE restricted_user;&quot;)
-        Repo.query!(&quot;SET app.current_user_id = '#{scope.current_user.id}';&quot;)
-
-        from(l in List,
-          limit: ^limit,
-          order_by: [asc: :position]
+        from(l <span style="color:#f92672">in</span> <span style="color:#a6e22e">List</span>,
+          <span style="color:#e6db74">limit</span>: <span style="color:#f92672">^</span>limit,
+          <span style="color:#e6db74">order_by</span>: [<span style="color:#e6db74">asc</span>: <span style="color:#e6db74">:position</span>]
         )
-        |&gt; Repo.all()
-        |&gt; Repo.preload(
-          todos:
-            from(t in Todo,
-              limit: @max_todos,
-              order_by: [asc: t.position]
+        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>all()
+        <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>preload(
+          <span style="color:#e6db74">todos</span>:
+            from(t <span style="color:#f92672">in</span> <span style="color:#a6e22e">Todo</span>,
+              <span style="color:#e6db74">limit</span>: <span style="color:#a6e22e">@max_todos</span>,
+              <span style="color:#e6db74">order_by</span>: [<span style="color:#e6db74">asc</span>: t<span style="color:#f92672">.</span>position]
             )
         )
-      end)
+      <span style="color:#66d9ef">end</span>)
 
     lists
-  end
-</code></pre>
-
-<p>Refreshing the page should get you back to the initial and correct state. But this code looks so ugly, and repeating this everywhere wouldn&rsquo;t be fun. I honestly wouldn&rsquo;t want to imagine the reviews on this code!</p>
-
+  <span style="color:#66d9ef">end</span>
+</code></pre></div><p>Refreshing the page should get you back to the initial and correct state. But this code looks so ugly, and repeating this everywhere wouldn&rsquo;t be fun. I honestly wouldn&rsquo;t want to imagine the reviews on this code!</p>
 <p>We need to find a way to wrap all DB calls with the transaction above, then everything will be automatically filtered by Postgres. I want the function to look like this and get rid of the <code>scope</code> argument:</p>
-
-<pre><code class="language-elixir">  def active_lists(limit) do
-    from(l in List,
-      limit: ^limit,
-      order_by: [asc: :position]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">  <span style="color:#66d9ef">def</span> active_lists(limit) <span style="color:#66d9ef">do</span>
+    from(l <span style="color:#f92672">in</span> <span style="color:#a6e22e">List</span>,
+      <span style="color:#e6db74">limit</span>: <span style="color:#f92672">^</span>limit,
+      <span style="color:#e6db74">order_by</span>: [<span style="color:#e6db74">asc</span>: <span style="color:#e6db74">:position</span>]
     )
-    |&gt; Repo.all()
-    |&gt; Repo.preload(
-      todos:
-        from(t in Todo,
-          limit: @max_todos,
-          order_by: [asc: t.position]
+    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>all()
+    <span style="color:#f92672">|&gt;</span> <span style="color:#a6e22e">Repo</span><span style="color:#f92672">.</span>preload(
+      <span style="color:#e6db74">todos</span>:
+        from(t <span style="color:#f92672">in</span> <span style="color:#a6e22e">Todo</span>,
+          <span style="color:#e6db74">limit</span>: <span style="color:#a6e22e">@max_todos</span>,
+          <span style="color:#e6db74">order_by</span>: [<span style="color:#e6db74">asc</span>: t<span style="color:#f92672">.</span>position]
         )
     )
-  end
-</code></pre>
-
-<h1 id="next-steps">Next steps</h1>
-
+  <span style="color:#66d9ef">end</span>
+</code></pre></div><h1 id="next-steps">Next steps</h1>
 <p>On the next post I will continue working on the example above. I should a few ways I learned to wrap all DB calls in a transaction that sets the local role and current_user_id parameter. We&rsquo;ll learn about Process dictionary and wrapping the TodoTrek.Repo functions!</p>
 
       </article>

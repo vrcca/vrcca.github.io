@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog on Atomic Reference</title>
+    <title>blog on Atomic Reference</title>
     <link>https://blog.vitor.info/tags/blog/</link>
-    <description>Recent content in Blog on Atomic Reference</description>
+    <description>Recent content in blog on Atomic Reference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Oct 2018 15:21:02 +0000</lastBuildDate>
-    
-	<atom:link href="https://blog.vitor.info/tags/blog/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 18 Oct 2018 15:21:02 +0000</lastBuildDate><atom:link href="https://blog.vitor.info/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello World!</title>
       <link>https://blog.vitor.info/post/my-first-post/</link>
