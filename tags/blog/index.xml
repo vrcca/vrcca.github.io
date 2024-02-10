@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>blog on Enhanced Lowkey Hugo</title>
-    <link>http://example.org/tags/blog/</link>
-    <description>Recent content in blog on Enhanced Lowkey Hugo</description>
+    <title>blog on Vitor Cavalcanti</title>
+    <link>https://blog.vitor.info/tags/blog/</link>
+    <description>Recent content in blog on Vitor Cavalcanti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
     <lastBuildDate>Sat, 10 Feb 2024 12:39:02 +0100</lastBuildDate>
-    <atom:link href="http://example.org/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.vitor.info/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Row-level Security with Postgres in Elixir</title>
-      <link>http://example.org/posts/row-level-security-with-postgres-in-elixir-part-1/</link>
+      <link>https://blog.vitor.info/posts/row-level-security-with-postgres-in-elixir-part-1/</link>
       <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
-      <guid>http://example.org/posts/row-level-security-with-postgres-in-elixir-part-1/</guid>
+      <guid>https://blog.vitor.info/posts/row-level-security-with-postgres-in-elixir-part-1/</guid>
       <description>This is a dump from my recent experience implementing Row-level security in Elixir and Postgres for dynamically defined tenants.</description>
     </item>
     <item>
       <title>Hello World!</title>
-      <link>http://example.org/posts/my-first-post/</link>
+      <link>https://blog.vitor.info/posts/my-first-post/</link>
       <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
-      <guid>http://example.org/posts/my-first-post/</guid>
+      <guid>https://blog.vitor.info/posts/my-first-post/</guid>
       <description>Hello world! Here is my first post.&#xA;I shall begin it explaining how I setup this blog using GitHub Pages, GitLab and Hugo.</description>
     </item>
   </channel>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>phoenix on Enhanced Lowkey Hugo</title>
-    <link>http://example.org/tags/phoenix/</link>
-    <description>Recent content in phoenix on Enhanced Lowkey Hugo</description>
+    <title>phoenix on Vitor Cavalcanti</title>
+    <link>https://blog.vitor.info/tags/phoenix/</link>
+    <description>Recent content in phoenix on Vitor Cavalcanti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
     <lastBuildDate>Tue, 05 Mar 2019 16:31:19 +0000</lastBuildDate>
-    <atom:link href="http://example.org/tags/phoenix/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.vitor.info/tags/phoenix/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting The Current Page in Phoenix Framework</title>
-      <link>http://example.org/posts/getting-the-current-page-in-phoenix/</link>
+      <link>https://blog.vitor.info/posts/getting-the-current-page-in-phoenix/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
-      <guid>http://example.org/posts/getting-the-current-page-in-phoenix/</guid>
+      <guid>https://blog.vitor.info/posts/getting-the-current-page-in-phoenix/</guid>
       <description>When programming in Phoenix Framework, you sometimes need to code a decision point based on the current page.</description>
     </item>
   </channel>

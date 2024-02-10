@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Enhanced Lowkey Hugo</title>
-    <link>http://example.org/tags/</link>
-    <description>Recent content in Tags on Enhanced Lowkey Hugo</description>
+    <title>Tags on Vitor Cavalcanti</title>
+    <link>https://blog.vitor.info/tags/</link>
+    <description>Recent content in Tags on Vitor Cavalcanti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
     <lastBuildDate>Sat, 10 Feb 2024 12:39:02 +0100</lastBuildDate>
-    <atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.vitor.info/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>blog</title>
-      <link>http://example.org/tags/blog/</link>
+      <link>https://blog.vitor.info/tags/blog/</link>
       <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
-      <guid>http://example.org/tags/blog/</guid>
+      <guid>https://blog.vitor.info/tags/blog/</guid>
       <description></description>
     </item>
     <item>
       <title>elixir</title>
-      <link>http://example.org/tags/elixir/</link>
+      <link>https://blog.vitor.info/tags/elixir/</link>
       <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
-      <guid>http://example.org/tags/elixir/</guid>
+      <guid>https://blog.vitor.info/tags/elixir/</guid>
       <description></description>
     </item>
     <item>
       <title>postgres</title>
-      <link>http://example.org/tags/postgres/</link>
+      <link>https://blog.vitor.info/tags/postgres/</link>
       <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
-      <guid>http://example.org/tags/postgres/</guid>
+      <guid>https://blog.vitor.info/tags/postgres/</guid>
       <description></description>
     </item>
     <item>
       <title>phoenix</title>
-      <link>http://example.org/tags/phoenix/</link>
+      <link>https://blog.vitor.info/tags/phoenix/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
-      <guid>http://example.org/tags/phoenix/</guid>
+      <guid>https://blog.vitor.info/tags/phoenix/</guid>
       <description></description>
     </item>
     <item>
       <title>phoenixframework</title>
-      <link>http://example.org/tags/phoenixframework/</link>
+      <link>https://blog.vitor.info/tags/phoenixframework/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
-      <guid>http://example.org/tags/phoenixframework/</guid>
+      <guid>https://blog.vitor.info/tags/phoenixframework/</guid>
       <description></description>
     </item>
     <item>
       <title>java</title>
-      <link>http://example.org/tags/java/</link>
+      <link>https://blog.vitor.info/tags/java/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
-      <guid>http://example.org/tags/java/</guid>
+      <guid>https://blog.vitor.info/tags/java/</guid>
       <description></description>
     </item>
     <item>
       <title>tdd</title>
-      <link>http://example.org/tags/tdd/</link>
+      <link>https://blog.vitor.info/tags/tdd/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
-      <guid>http://example.org/tags/tdd/</guid>
+      <guid>https://blog.vitor.info/tags/tdd/</guid>
       <description></description>
     </item>
     <item>
       <title>test</title>
-      <link>http://example.org/tags/test/</link>
+      <link>https://blog.vitor.info/tags/test/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
-      <guid>http://example.org/tags/test/</guid>
+      <guid>https://blog.vitor.info/tags/test/</guid>
       <description></description>
     </item>
     <item>
       <title>gitlab</title>
-      <link>http://example.org/tags/gitlab/</link>
+      <link>https://blog.vitor.info/tags/gitlab/</link>
       <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
-      <guid>http://example.org/tags/gitlab/</guid>
+      <guid>https://blog.vitor.info/tags/gitlab/</guid>
       <description></description>
     </item>
     <item>
       <title>hugo</title>
-      <link>http://example.org/tags/hugo/</link>
+      <link>https://blog.vitor.info/tags/hugo/</link>
       <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
-      <guid>http://example.org/tags/hugo/</guid>
+      <guid>https://blog.vitor.info/tags/hugo/</guid>
       <description></description>
     </item>
   </channel>

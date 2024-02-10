@@ -2,72 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/</loc>
+    <loc>https://blog.vitor.info/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/blog/</loc>
+    <loc>https://blog.vitor.info/tags/blog/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/elixir/</loc>
+    <loc>https://blog.vitor.info/tags/elixir/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/</loc>
+    <loc>https://blog.vitor.info/posts/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/postgres/</loc>
+    <loc>https://blog.vitor.info/tags/postgres/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/row-level-security-with-postgres-in-elixir-part-1/</loc>
+    <loc>https://blog.vitor.info/posts/row-level-security-with-postgres-in-elixir-part-1/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://blog.vitor.info/tags/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>http://example.org/about/</loc>
+    <loc>https://blog.vitor.info/about/</loc>
     <lastmod>2019-03-05T16:47:29+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/contact/</loc>
+    <loc>https://blog.vitor.info/contact/</loc>
     <lastmod>2019-03-05T16:46:58+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/getting-the-current-page-in-phoenix/</loc>
+    <loc>https://blog.vitor.info/posts/getting-the-current-page-in-phoenix/</loc>
     <lastmod>2019-03-05T16:31:19+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/phoenix/</loc>
+    <loc>https://blog.vitor.info/tags/phoenix/</loc>
     <lastmod>2019-03-05T16:31:19+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/phoenixframework/</loc>
+    <loc>https://blog.vitor.info/tags/phoenixframework/</loc>
     <lastmod>2019-03-05T16:31:19+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/java/</loc>
+    <loc>https://blog.vitor.info/tags/java/</loc>
     <lastmod>2018-10-30T12:14:02+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/tdd/</loc>
+    <loc>https://blog.vitor.info/tags/tdd/</loc>
     <lastmod>2018-10-30T12:14:02+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/test/</loc>
+    <loc>https://blog.vitor.info/tags/test/</loc>
     <lastmod>2018-10-30T12:14:02+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/writing-better-tests-in-java/</loc>
+    <loc>https://blog.vitor.info/posts/writing-better-tests-in-java/</loc>
     <lastmod>2018-10-30T12:14:02+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/gitlab/</loc>
+    <loc>https://blog.vitor.info/tags/gitlab/</loc>
     <lastmod>2018-10-18T15:21:02+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/my-first-post/</loc>
+    <loc>https://blog.vitor.info/posts/my-first-post/</loc>
     <lastmod>2018-10-18T15:21:02+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/hugo/</loc>
+    <loc>https://blog.vitor.info/tags/hugo/</loc>
     <lastmod>2018-10-18T15:21:02+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/search/</loc>
+    <loc>https://blog.vitor.info/search/</loc>
     <lastmod>2014-11-09T13:49:44+04:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://blog.vitor.info/categories/</loc>
   </url><url>
-    <loc>http://example.org/categories/css/</loc>
+    <loc>https://blog.vitor.info/categories/css/</loc>
   </url><url>
-    <loc>http://example.org/categories/javascript/</loc>
+    <loc>https://blog.vitor.info/categories/javascript/</loc>
   </url><url>
-    <loc>http://example.org/categories/uncategories/</loc>
+    <loc>https://blog.vitor.info/categories/uncategories/</loc>
   </url>
 </urlset>
