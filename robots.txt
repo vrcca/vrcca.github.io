@@ -1,5 +1,11 @@
 User-agent: *
 
+Disallow: /
+
+Disallow: /posts/
+
+Disallow: /posts/til-ecto-updating-on-delete-constraint/
+
 Disallow: /tags/blog/
 
 Disallow: /categories/
@@ -7,10 +13,6 @@ Disallow: /categories/
 Disallow: /tags/elixir/
 
 Disallow: /categories/elixir/
-
-Disallow: /
-
-Disallow: /posts/
 
 Disallow: /tags/postgres/
 
