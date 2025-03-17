@@ -7,27 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
-    <lastBuildDate>Sat, 10 Feb 2024 12:39:02 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 17 Mar 2025 14:24:45 +0000</lastBuildDate>
     <atom:link href="https://blog.vitor.info/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>blog</title>
-      <link>https://blog.vitor.info/tags/blog/</link>
-      <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
-      <guid>https://blog.vitor.info/tags/blog/</guid>
+      <title>ecto</title>
+      <link>https://blog.vitor.info/tags/ecto/</link>
+      <pubDate>Mon, 17 Mar 2025 14:24:45 +0000</pubDate>
+      <guid>https://blog.vitor.info/tags/ecto/</guid>
       <description></description>
     </item>
     <item>
       <title>elixir</title>
       <link>https://blog.vitor.info/tags/elixir/</link>
-      <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
+      <pubDate>Mon, 17 Mar 2025 14:24:45 +0000</pubDate>
       <guid>https://blog.vitor.info/tags/elixir/</guid>
       <description></description>
     </item>
     <item>
       <title>postgres</title>
       <link>https://blog.vitor.info/tags/postgres/</link>
-      <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
+      <pubDate>Mon, 17 Mar 2025 14:24:45 +0000</pubDate>
       <guid>https://blog.vitor.info/tags/postgres/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>blog</title>
+      <link>https://blog.vitor.info/tags/blog/</link>
+      <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
+      <guid>https://blog.vitor.info/tags/blog/</guid>
       <description></description>
     </item>
     <item>

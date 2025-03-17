@@ -1,24 +1,28 @@
 User-agent: *
 
-Disallow: /
-
-Disallow: /posts/
-
-Disallow: /posts/til-ecto-updating-on-delete-constraint/
-
-Disallow: /tags/blog/
-
 Disallow: /categories/
+
+Disallow: /tags/ecto/
+
+Disallow: /categories/ecto/
 
 Disallow: /tags/elixir/
 
 Disallow: /categories/elixir/
 
+Disallow: /
+
+Disallow: /posts/
+
 Disallow: /tags/postgres/
 
-Disallow: /posts/row-level-security-with-postgres-in-elixir-part-1/
-
 Disallow: /tags/
+
+Disallow: /posts/til-how-to-add-on-delete-constraint-in-ecto/
+
+Disallow: /tags/blog/
+
+Disallow: /posts/row-level-security-with-postgres-in-elixir-part-1/
 
 Disallow: /categories/tutorials/
 
