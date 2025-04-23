@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gitlab on Vitor Cavalcanti</title>
-    <link>https://blog.vitor.info/tags/gitlab/</link>
+    <link>/tags/gitlab/</link>
     <description>Recent content in gitlab on Vitor Cavalcanti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
     <lastBuildDate>Thu, 18 Oct 2018 15:21:02 +0000</lastBuildDate>
-    <atom:link href="https://blog.vitor.info/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello World!</title>
-      <link>https://blog.vitor.info/posts/my-first-post/</link>
+      <link>/posts/my-first-post/</link>
       <pubDate>Thu, 18 Oct 2018 15:21:02 +0000</pubDate>
-      <guid>https://blog.vitor.info/posts/my-first-post/</guid>
+      <guid>/posts/my-first-post/</guid>
       <description>Hello world! Here is my first post.&#xA;I shall begin it explaining how I setup this blog using GitHub Pages, GitLab and Hugo.</description>
     </item>
   </channel>

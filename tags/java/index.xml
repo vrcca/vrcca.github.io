@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>java on Vitor Cavalcanti</title>
-    <link>https://blog.vitor.info/tags/java/</link>
+    <link>/tags/java/</link>
     <description>Recent content in java on Vitor Cavalcanti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
     <lastBuildDate>Tue, 30 Oct 2018 12:14:02 +0000</lastBuildDate>
-    <atom:link href="https://blog.vitor.info/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Writing Better Tests In Java</title>
-      <link>https://blog.vitor.info/posts/writing-better-tests-in-java/</link>
+      <link>/posts/writing-better-tests-in-java/</link>
       <pubDate>Tue, 30 Oct 2018 12:14:02 +0000</pubDate>
-      <guid>https://blog.vitor.info/posts/writing-better-tests-in-java/</guid>
+      <guid>/posts/writing-better-tests-in-java/</guid>
       <description>Ever wondered why your tests break everytime you change production code? Are your tests difficult to read?</description>
     </item>
   </channel>

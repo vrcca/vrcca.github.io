@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Vitor Cavalcanti</title>
-    <link>https://blog.vitor.info/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Vitor Cavalcanti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
     <lastBuildDate>Mon, 17 Mar 2025 14:24:45 +0000</lastBuildDate>
-    <atom:link href="https://blog.vitor.info/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ecto</title>
-      <link>https://blog.vitor.info/categories/ecto/</link>
+      <link>/categories/ecto/</link>
       <pubDate>Mon, 17 Mar 2025 14:24:45 +0000</pubDate>
-      <guid>https://blog.vitor.info/categories/ecto/</guid>
+      <guid>/categories/ecto/</guid>
       <description></description>
     </item>
     <item>
       <title>Elixir</title>
-      <link>https://blog.vitor.info/categories/elixir/</link>
+      <link>/categories/elixir/</link>
       <pubDate>Mon, 17 Mar 2025 14:24:45 +0000</pubDate>
-      <guid>https://blog.vitor.info/categories/elixir/</guid>
+      <guid>/categories/elixir/</guid>
       <description></description>
     </item>
     <item>
       <title>Tutorials</title>
-      <link>https://blog.vitor.info/categories/tutorials/</link>
+      <link>/categories/tutorials/</link>
       <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
-      <guid>https://blog.vitor.info/categories/tutorials/</guid>
+      <guid>/categories/tutorials/</guid>
       <description></description>
     </item>
     <item>
       <title>Uncategories</title>
-      <link>https://blog.vitor.info/categories/uncategories/</link>
+      <link>/categories/uncategories/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://blog.vitor.info/categories/uncategories/</guid>
+      <guid>/categories/uncategories/</guid>
       <description>Description</description>
     </item>
   </channel>

@@ -2,78 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.vitor.info/categories/</loc>
+    <loc>/categories/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/ecto/</loc>
+    <loc>/tags/ecto/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/categories/ecto/</loc>
+    <loc>/categories/ecto/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/elixir/</loc>
+    <loc>/tags/elixir/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/categories/elixir/</loc>
+    <loc>/categories/elixir/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/</loc>
+    <loc>/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/postgres/</loc>
+    <loc>/tags/postgres/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/posts/til-how-to-add-on-delete-constraint-in-ecto/</loc>
+    <loc>/posts/til-how-to-add-on-delete-constraint-in-ecto/</loc>
     <lastmod>2025-03-17T14:24:45+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/blog/</loc>
+    <loc>/tags/blog/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/posts/row-level-security-with-postgres-in-elixir-part-1/</loc>
+    <loc>/posts/row-level-security-with-postgres-in-elixir-part-1/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/categories/tutorials/</loc>
+    <loc>/categories/tutorials/</loc>
     <lastmod>2024-02-10T12:39:02+01:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/about/</loc>
+    <loc>/about/</loc>
     <lastmod>2019-03-05T16:47:29+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/posts/getting-the-current-page-in-phoenix/</loc>
+    <loc>/posts/getting-the-current-page-in-phoenix/</loc>
     <lastmod>2019-03-05T16:31:19+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/phoenix/</loc>
+    <loc>/tags/phoenix/</loc>
     <lastmod>2019-03-05T16:31:19+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/phoenixframework/</loc>
+    <loc>/tags/phoenixframework/</loc>
     <lastmod>2019-03-05T16:31:19+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/java/</loc>
+    <loc>/tags/java/</loc>
     <lastmod>2018-10-30T12:14:02+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/tdd/</loc>
+    <loc>/tags/tdd/</loc>
     <lastmod>2018-10-30T12:14:02+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/test/</loc>
+    <loc>/tags/test/</loc>
     <lastmod>2018-10-30T12:14:02+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/posts/writing-better-tests-in-java/</loc>
+    <loc>/posts/writing-better-tests-in-java/</loc>
     <lastmod>2018-10-30T12:14:02+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/gitlab/</loc>
+    <loc>/tags/gitlab/</loc>
     <lastmod>2018-10-18T15:21:02+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/posts/my-first-post/</loc>
+    <loc>/posts/my-first-post/</loc>
     <lastmod>2018-10-18T15:21:02+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/tags/hugo/</loc>
+    <loc>/tags/hugo/</loc>
     <lastmod>2018-10-18T15:21:02+00:00</lastmod>
   </url><url>
-    <loc>https://blog.vitor.info/categories/uncategories/</loc>
+    <loc>/categories/uncategories/</loc>
   </url>
 </urlset>

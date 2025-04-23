@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>elixir on Vitor Cavalcanti</title>
-    <link>https://blog.vitor.info/tags/elixir/</link>
+    <link>/tags/elixir/</link>
     <description>Recent content in elixir on Vitor Cavalcanti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
     <lastBuildDate>Mon, 17 Mar 2025 14:24:45 +0000</lastBuildDate>
-    <atom:link href="https://blog.vitor.info/tags/elixir/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/elixir/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TIL: How to add a &#39;on delete&#39; constraint with Ecto</title>
-      <link>https://blog.vitor.info/posts/til-how-to-add-on-delete-constraint-in-ecto/</link>
+      <link>/posts/til-how-to-add-on-delete-constraint-in-ecto/</link>
       <pubDate>Mon, 17 Mar 2025 14:24:45 +0000</pubDate>
-      <guid>https://blog.vitor.info/posts/til-how-to-add-on-delete-constraint-in-ecto/</guid>
+      <guid>/posts/til-how-to-add-on-delete-constraint-in-ecto/</guid>
       <description>To add a on delete constraint with Ecto is pretty simple. Create a new migration that:</description>
     </item>
     <item>
       <title>Row-level Security with Postgres in Elixir</title>
-      <link>https://blog.vitor.info/posts/row-level-security-with-postgres-in-elixir-part-1/</link>
+      <link>/posts/row-level-security-with-postgres-in-elixir-part-1/</link>
       <pubDate>Sat, 10 Feb 2024 12:39:02 +0100</pubDate>
-      <guid>https://blog.vitor.info/posts/row-level-security-with-postgres-in-elixir-part-1/</guid>
+      <guid>/posts/row-level-security-with-postgres-in-elixir-part-1/</guid>
       <description>This is a dump from my recent experience implementing Row-level security in Elixir and Postgres for dynamically defined tenants.</description>
     </item>
     <item>
       <title>Getting The Current Page in Phoenix Framework</title>
-      <link>https://blog.vitor.info/posts/getting-the-current-page-in-phoenix/</link>
+      <link>/posts/getting-the-current-page-in-phoenix/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
-      <guid>https://blog.vitor.info/posts/getting-the-current-page-in-phoenix/</guid>
+      <guid>/posts/getting-the-current-page-in-phoenix/</guid>
       <description>When programming in Phoenix Framework, you sometimes need to code a decision point based on the current page.</description>
     </item>
   </channel>

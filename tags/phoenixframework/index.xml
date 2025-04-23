@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>phoenixframework on Vitor Cavalcanti</title>
-    <link>https://blog.vitor.info/tags/phoenixframework/</link>
+    <link>/tags/phoenixframework/</link>
     <description>Recent content in phoenixframework on Vitor Cavalcanti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
     <lastBuildDate>Tue, 05 Mar 2019 16:31:19 +0000</lastBuildDate>
-    <atom:link href="https://blog.vitor.info/tags/phoenixframework/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/phoenixframework/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting The Current Page in Phoenix Framework</title>
-      <link>https://blog.vitor.info/posts/getting-the-current-page-in-phoenix/</link>
+      <link>/posts/getting-the-current-page-in-phoenix/</link>
       <pubDate>Tue, 05 Mar 2019 16:31:19 +0000</pubDate>
-      <guid>https://blog.vitor.info/posts/getting-the-current-page-in-phoenix/</guid>
+      <guid>/posts/getting-the-current-page-in-phoenix/</guid>
       <description>When programming in Phoenix Framework, you sometimes need to code a decision point based on the current page.</description>
     </item>
   </channel>

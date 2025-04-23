@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Uncategories on Vitor Cavalcanti</title>
-    <link>https://blog.vitor.info/categories/uncategories/</link>
+    <link>/categories/uncategories/</link>
     <description>Recent content in Uncategories on Vitor Cavalcanti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
-    <atom:link href="https://blog.vitor.info/categories/uncategories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/uncategories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
